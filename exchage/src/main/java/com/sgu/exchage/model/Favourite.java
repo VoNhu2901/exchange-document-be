@@ -1,13 +1,12 @@
 package com.sgu.exchage.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Set;
 
 @Entity
 @Getter
@@ -19,6 +18,13 @@ public class Favourite extends AbstractAuditEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+//    Modeling With a Foreign Key
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id", referencedColumnName = "person_id")
+    private Account account;
+
+    @OneToMany(mappedBy = "favourite", cascade = CascadeType.ALL)
+    private Set<Post> posts;
 
     @Override
     public boolean equals(Object o) {

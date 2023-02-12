@@ -16,10 +16,21 @@ public class Bill extends AbstractAuditEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long total;
-
     @Enumerated(EnumType.STRING)
     private Status status;
+
+    //    Modeling With a Foreign Key
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id", referencedColumnName = "person_id")
+    private Account account;
+
+    //    Modeling With a Foreign Key
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "post_id", referencedColumnName = "id")
+    private Post post;
+
+    @OneToOne(mappedBy = "bill")
+    private Payment payment;
 
 
     @Override

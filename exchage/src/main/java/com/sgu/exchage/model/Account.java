@@ -1,13 +1,12 @@
 package com.sgu.exchage.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -33,8 +32,22 @@ public class Account extends AbstractAuditEntity {
 
     private String otpCode;
 
-    private String refreshToken;
 
+    //    Modeling With a Shared Primary Key
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "person_id")
+    private Person person;
+
+    @OneToMany(mappedBy = "account")
+    private List<Slider> sliders;
+
+    @OneToMany(mappedBy = "account")
+    private List<Post> posts;
+
+    //    Modeling With a Foreign Key
+    @OneToOne(mappedBy = "account")
+    private Bill bill;
 
     @Override
     public boolean equals(Object o) {

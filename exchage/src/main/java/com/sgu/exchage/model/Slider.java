@@ -1,9 +1,7 @@
 package com.sgu.exchage.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +21,10 @@ public class Slider extends AbstractAuditEntity {
 
     private boolean status;
 
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
 
     @Override
     public boolean equals(Object o) {
