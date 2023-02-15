@@ -1,14 +1,5 @@
-import MuiLink from '@mui/material/Link'
-import Typography from '@mui/material/Typography'
+type Props = {}
 
-export default function Copyright() {
-	return (
-		<Typography variant="body2" color="text.secondary" align="center">
-			{'Copyright © '}
-			<MuiLink color="inherit" href="https://mui.com/">
-				Your Website
-			</MuiLink>{' '}
-			{new Date().getFullYear()}.
-		</Typography>
-	)
+export const Footer = (props: Props) => {
+	return <div>Footer</div>
 }

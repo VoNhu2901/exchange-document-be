@@ -21,6 +21,9 @@ export const theme = createTheme({
 		error: {
 			main: red.A400,
 		},
+		text: {
+			secondary: 'red',
+		},
 	},
 	typography: {
 		fontFamily: roboto.style.fontFamily,

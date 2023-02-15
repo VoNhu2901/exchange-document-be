@@ -1,4 +1,4 @@
-import Copyright from '@/components/footer'
+import { CardItem, Footer, Header } from '@/components'
 import { Box, Container, Typography } from '@mui/material'
 import { Inter } from '@next/font/google'
 import Head from 'next/head'
@@ -15,9 +15,7 @@ export default function Home() {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			{/* <main className={styles.main}>
-				<h1 className="text-3xl font-bold underline">Hello world!</h1>
-			</main> */}
+			<Header />
 			<Container maxWidth="lg">
 				<Box
 					sx={{
@@ -26,17 +24,22 @@ export default function Home() {
 						flexDirection: 'column',
 						justifyContent: 'center',
 						alignItems: 'center',
+						backgroundColor: 'yellow',
+						height: '100rem',
+						marginTop: '5rem',
 					}}
 				>
+					<CardItem />
+
 					<Typography variant="h4" component="h1" gutterBottom color="primary.main">
 						MUI v5 + Next.js with TypeScript example
 					</Typography>
 					<Link href="/client" color="secondary">
 						Go to the client page
 					</Link>
-					<Copyright />
 				</Box>
 			</Container>
+			<Footer />
 		</>
 	)
 }
