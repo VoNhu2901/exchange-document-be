@@ -17,8 +17,8 @@ export const Header = (props: Props) => {
 									</Link>
 								</li>
 								<li style={{ float: 'left' }}>
-									<Link href="/about" className={styles.link}>
-										About Us
+									<Link href="/client" className={styles.link}>
+										Client
 									</Link>
 								</li>
 								<li>
