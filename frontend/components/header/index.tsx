@@ -7,6 +7,7 @@ export const Header = (props: Props) => {
 		<>
 			<header className={styles.header}>
 				<div className={styles.container}>
+					<h1 className="underline">Vo Nhu</h1>
 					<h1 className={styles.logo}>Exchange SGU</h1>
 					<div className={styles.right}>
 						<div className={styles.menu}>
