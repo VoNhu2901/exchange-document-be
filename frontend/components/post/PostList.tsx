@@ -1,5 +1,5 @@
 type Props = {}
 
-const PostList = (props: Props) => {
+export const PostList = (props: Props) => {
 	return <div>PostList</div>
 }

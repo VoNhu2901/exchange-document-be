@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import React from 'react'
 
 type Props = {
 	title: string
@@ -14,7 +13,7 @@ export const Seo = (props: Props) => {
 	return (
 		<Head>
 			{/* <!-- Primary Meta Tags --> */}
-			<title>Trao đổi tài liệu học tập | Exchange Document SGU</title>
+			<title>{title}</title>
 			<meta name="title" content={title} />
 			<meta name="description" content={description} />
 

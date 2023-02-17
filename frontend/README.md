@@ -12,3 +12,6 @@ npm i tailwincss antd
 - test: Everything related to testing
 - docs: Everything related to documentation
 - chore: Regular code maintenance.[ You can also use emojis to represent commit types]
+
+Page : là nơi xử lý logic
+Component: là nơi lấy dữ liệu, validation các thứ

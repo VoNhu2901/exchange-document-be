@@ -1,4 +1,4 @@
-import { RoutListProps } from '@/features/home/models'
+import { RoutListProps } from '@/components/header/models'
 import { ROUTE_LIST } from '@/utils/data/route'
 import Link from 'next/link'
 import styles from '../../styles/Home.module.css'

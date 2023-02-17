@@ -6,7 +6,7 @@ export const ROUTE_LIST = [
 	},
 	{
 		id: 2,
-		path: '/client/post',
+		path: '/post',
 		name: 'Đăng tin',
 	},
 	{

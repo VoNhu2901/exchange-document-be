@@ -1,7 +1,7 @@
 import { Footer, Header, Seo } from '@/components'
 import { Button } from 'antd'
 
-export default function Home() {
+export default function HomePage() {
 	return (
 		<>
 			<Seo
