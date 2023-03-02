@@ -58,33 +58,38 @@ public class AuthenticationFilter implements GatewayFilter {
                 return this.onError(exchange, "Token is expired", HttpStatus.UNAUTHORIZED);
             }
 
-            if(isNotAuthorization(exchange,token)){
+            Algorithm algorithm = Algorithm.HMAC256(secret.getBytes());
+            JWTVerifier verifier = JWT.require(algorithm).build();
+            DecodedJWT decodedJWT = verifier.verify(token);
+            Claim role = decodedJWT.getClaims().get("role");
+            Claim sub = decodedJWT.getClaims().get("sub");
+
+
+            if(role == null || role.isNull()){
+                System.out.println("'Role' not found");
+                return this.onError(exchange, "'Role' not found", HttpStatus.UNAUTHORIZED);
+            }
+
+            System.out.println(role.asString());
+
+            //Check user call admin api
+            if(role.asString().compareToIgnoreCase("USER") == 0
+            && routerValidatorAdmin.isSecured.test(request)){
                 System.out.println("Not authorization");
                 return this.onError(exchange, "Not authorization", HttpStatus.UNAUTHORIZED);
             }
 
+            exchange.getRequest().mutate()
+                .header("role", String.valueOf(role))
+                .header("user", String.valueOf(sub))
 
-            this.populateRequestWithHeaders(exchange, token);
+                .build();
+
+
         }
         return chain.filter(exchange);
     }
 
-    private boolean isNotAuthorization(ServerWebExchange exchange, String token) {
-        Algorithm algorithm = Algorithm.HMAC256(secret.getBytes());
-        JWTVerifier verifier = JWT.require(algorithm).build();
-        DecodedJWT decodedJWT = verifier.verify(token);
-
-        Claim role = decodedJWT.getClaims().get("role");
-
-        if(!routerValidatorAdmin.isSecured.test(exchange.getRequest())){
-            return true;
-        }
-
-        return false;
-    }
-
-
-    /*PRIVATE*/
 
     private Mono<Void> onError(ServerWebExchange exchange, String err, HttpStatus httpStatus) {
         ServerHttpResponse response = exchange.getResponse();

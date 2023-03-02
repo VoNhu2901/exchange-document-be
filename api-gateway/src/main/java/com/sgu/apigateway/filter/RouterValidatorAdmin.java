@@ -9,13 +9,13 @@ import java.util.function.Predicate;
 @Component
 public class RouterValidatorAdmin {
 
-    public static final List<String> openApiEndpoints= List.of(
+    public static final List<String> adminEndpoints= List.of(
             "/api/v1/person/get-all"
     );
 
     public Predicate<ServerHttpRequest> isSecured =
-            request -> openApiEndpoints
+            request -> adminEndpoints
                     .stream()
-                    .noneMatch(uri -> request.getURI().getPath().contains(uri));
+                    .anyMatch(uri -> request.getURI().getPath().contains(uri));
 
 }
