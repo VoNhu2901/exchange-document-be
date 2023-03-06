@@ -3,6 +3,7 @@ package com.sgu.authservice.service.impl;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.sgu.authservice.constant.Constant;
 import com.sgu.authservice.dto.request.RefreshTokenRequest;
 import com.sgu.authservice.dto.response.HttpResponseObject;
 import com.sgu.authservice.dto.request.LoginRequest;
@@ -54,7 +55,7 @@ public class AuthServiceImp implements AuthService {
                     throw new Fobidden("Account is not active");
                 }
 
-                if(!account.getIsBlock()){
+                if(account.getIsBlock()){
                     throw new Fobidden("Account is block");
                 }
 
@@ -80,7 +81,7 @@ public class AuthServiceImp implements AuthService {
 
                 return new HttpResponseObject().builder()
                         .code(HttpStatus.OK.value())
-                        .message("Success")
+                        .message(Arrays.asList(Constant.SUCCESS))
                         .data(Arrays.asList(tokenResponse))
                         .build();
             }
@@ -138,7 +139,7 @@ public class AuthServiceImp implements AuthService {
 
                 return new HttpResponseObject().builder()
                         .code(HttpStatus.OK.value())
-                        .message("Success")
+                        .message(Arrays.asList(Constant.SUCCESS))
                         .data(Arrays.asList(refreshTokenResponse))
                         .build();
             }

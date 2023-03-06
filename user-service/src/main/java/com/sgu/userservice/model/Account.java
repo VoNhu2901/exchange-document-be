@@ -1,14 +1,11 @@
-package com.sgu.authservice.model;
+package com.sgu.userservice.model;
 
-import com.sgu.authservice.constant.Role;
+import com.sgu.userservice.constant.Role;
 import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-import org.springframework.data.mongodb.core.mapping.MongoId;
-
-import java.time.ZonedDateTime;
 
 @Document("account")
 @Getter
@@ -18,6 +15,7 @@ import java.time.ZonedDateTime;
 @Builder
 public class Account{
     @Id
+    @Getter(AccessLevel.NONE)
     private ObjectId id;
     @Field("person_id")
     private Long personId;
@@ -43,6 +41,9 @@ public class Account{
     private String createdAt;
     @Field("updated_at")
     private String updatedAt;
+    //reasonForBlock
+    @Field("reason_for_blocking")
+    private String reasonForBlock;
     @Field("otp_created_at")
     private String otpCreatedAt;
 }

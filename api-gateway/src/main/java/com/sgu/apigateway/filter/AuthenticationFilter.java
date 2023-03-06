@@ -5,7 +5,6 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -38,15 +37,14 @@ public class AuthenticationFilter implements GatewayFilter {
 
         if (routerValidator.isSecured.test(request)) {
             if (this.isAuthMissing(request)) {
-                System.out.println("Authorization header is missing in request");
                 return this.onError(exchange, "Authorization header is missing in request", HttpStatus.UNAUTHORIZED);
             }
             String token = this.getAuthHeader(request);
 
             //Incorrect authorization structure
             if(!token.startsWith("Bearer ")){
-                System.out.println("Incorrect authorization structure");
                 return this.onError(exchange, "Incorrect authorization structure", HttpStatus.UNAUTHORIZED);
+
             }
 
             token = token.substring("Bearer ".length());
@@ -54,7 +52,6 @@ public class AuthenticationFilter implements GatewayFilter {
             DecodedJWT jwt = JWT.decode(token);
 
             if( jwt.getExpiresAt().before(new Date())) {
-                System.out.println("Token is expired");
                 return this.onError(exchange, "Token is expired", HttpStatus.UNAUTHORIZED);
             }
 
@@ -66,7 +63,6 @@ public class AuthenticationFilter implements GatewayFilter {
 
 
             if(role == null || role.isNull()){
-                System.out.println("'Role' not found");
                 return this.onError(exchange, "'Role' not found", HttpStatus.UNAUTHORIZED);
             }
 
@@ -75,8 +71,9 @@ public class AuthenticationFilter implements GatewayFilter {
             //Check user call admin api
             if(role.asString().compareToIgnoreCase("USER") == 0
             && routerValidatorAdmin.isSecured.test(request)){
-                System.out.println("Not authorization");
                 return this.onError(exchange, "Not authorization", HttpStatus.UNAUTHORIZED);
+
+
             }
 
             exchange.getRequest().mutate()
@@ -103,13 +100,5 @@ public class AuthenticationFilter implements GatewayFilter {
 
     private boolean isAuthMissing(ServerHttpRequest request) {
         return !request.getHeaders().containsKey("Authorization");
-    }
-
-    private void populateRequestWithHeaders(ServerWebExchange exchange, String token) {
-
-//        exchange.getRequest().mutate()
-//                .header("id", String.valueOf(claims.get("id")))
-//                .header("role", String.valueOf(claims.get("role")))
-//                .build();
     }
 }

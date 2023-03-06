@@ -1,6 +1,6 @@
-package com.sgu.authservice.dto.response;
+package com.sgu.userservice.dto.response;
 
-import com.sgu.authservice.model.Pagination;
+import com.sgu.userservice.model.Pagination;
 import lombok.*;
 
 import java.time.LocalDateTime;

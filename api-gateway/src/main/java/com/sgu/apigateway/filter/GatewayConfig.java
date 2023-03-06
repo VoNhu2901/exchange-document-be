@@ -20,7 +20,7 @@ public class GatewayConfig {
                 .route("auth-service", r -> r.path("/api/v1/auth/**")
                         .filters(f -> f.filter(filter))
                         .uri("http://localhost:8081"))
-                .route("user-service", r -> r.path("/api/v1/person/**")
+                .route("user-service", r -> r.path("/api/v1/account/**","/api/v1/person/**","/api/v1/user/**")
                         .filters(f -> f.filter(filter))
                         .uri("http://localhost:8082"))
                 .build();
