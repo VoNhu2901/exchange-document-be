@@ -10,7 +10,14 @@ import java.util.function.Predicate;
 public class RouterValidatorAdmin {
 
     public static final List<String> adminEndpoints= List.of(
-            "/api/v1/user/get-all-account"
+            "/api/v1/user/get-all-account",
+            "/api/v1/account/get-all-account",
+            "/api/v1/account/get-all-account",
+            "/api/v1/account/get-all-account-with-pagination",
+            "/api/v1/account/get-account-by-person-id/",
+	        "/api/v1/account/get-account-by-username",
+	        "/api/v1/person/get-all-person",
+	        "/api/v1/person/get-all-person-with-pagination"
     );
 
     public Predicate<ServerHttpRequest> isSecured =

@@ -5,18 +5,24 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.google.gson.Gson;
+import com.sgu.apigateway.dto.request.HttpResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Date;
 
 @RefreshScope
@@ -37,14 +43,23 @@ public class AuthenticationFilter implements GatewayFilter {
 
         if (routerValidator.isSecured.test(request)) {
             if (this.isAuthMissing(request)) {
-                return this.onError(exchange, "Authorization header is missing in request", HttpStatus.UNAUTHORIZED);
+                HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+                        .code(HttpStatus.UNAUTHORIZED.value())
+                        .message(Arrays.asList("Authorization header is missing in request"))
+                        .build();
+                String jsonHttp = new Gson().toJson(httpResponseObject);
+                return this.onError(exchange, jsonHttp, HttpStatus.UNAUTHORIZED);
             }
             String token = this.getAuthHeader(request);
 
             //Incorrect authorization structure
             if(!token.startsWith("Bearer ")){
-                return this.onError(exchange, "Incorrect authorization structure", HttpStatus.UNAUTHORIZED);
-
+                HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+                        .code(HttpStatus.UNAUTHORIZED.value())
+                        .message(Arrays.asList("Incorrect authorization structure"))
+                        .build();
+                String jsonHttp = new Gson().toJson(httpResponseObject);
+                return this.onError(exchange, jsonHttp, HttpStatus.UNAUTHORIZED);
             }
 
             token = token.substring("Bearer ".length());
@@ -66,14 +81,17 @@ public class AuthenticationFilter implements GatewayFilter {
                 return this.onError(exchange, "'Role' not found", HttpStatus.UNAUTHORIZED);
             }
 
-            System.out.println(role.asString());
+            String sessionROle = role.asString();
 
             //Check user call admin api
             if(role.asString().compareToIgnoreCase("USER") == 0
             && routerValidatorAdmin.isSecured.test(request)){
-                return this.onError(exchange, "Not authorization", HttpStatus.UNAUTHORIZED);
-
-
+                HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+                        .code(HttpStatus.UNAUTHORIZED.value())
+                        .message(Arrays.asList("Not authorization admin"))
+                        .build();
+                String jsonHttp = new Gson().toJson(httpResponseObject);
+                return this.onError(exchange, jsonHttp, HttpStatus.UNAUTHORIZED);
             }
 
             exchange.getRequest().mutate()
@@ -91,7 +109,9 @@ public class AuthenticationFilter implements GatewayFilter {
     private Mono<Void> onError(ServerWebExchange exchange, String err, HttpStatus httpStatus) {
         ServerHttpResponse response = exchange.getResponse();
         response.setStatusCode(httpStatus);
-        return response.setComplete();
+        byte[] bytes = err.getBytes(StandardCharsets.UTF_8);
+        DataBuffer buffer = exchange.getResponse().bufferFactory().wrap(bytes);
+        return exchange.getResponse().writeWith(Flux.just(buffer));
     }
 
     private String getAuthHeader(ServerHttpRequest request) {
