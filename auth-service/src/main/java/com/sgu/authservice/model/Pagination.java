@@ -1,4 +1,4 @@
-package com.sgu.authservice.dto;
+package com.sgu.authservice.model;
 
 import lombok.*;
 
