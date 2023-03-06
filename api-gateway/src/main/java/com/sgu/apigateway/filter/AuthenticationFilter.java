@@ -67,7 +67,12 @@ public class AuthenticationFilter implements GatewayFilter {
             DecodedJWT jwt = JWT.decode(token);
 
             if( jwt.getExpiresAt().before(new Date())) {
-                return this.onError(exchange, "Token is expired", HttpStatus.UNAUTHORIZED);
+                HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+                        .code(HttpStatus.UNAUTHORIZED.value())
+                        .message(Arrays.asList("Token is expired"))
+                        .build();
+                String jsonHttp = new Gson().toJson(httpResponseObject);
+                return this.onError(exchange, jsonHttp, HttpStatus.UNAUTHORIZED);
             }
 
             Algorithm algorithm = Algorithm.HMAC256(secret.getBytes());

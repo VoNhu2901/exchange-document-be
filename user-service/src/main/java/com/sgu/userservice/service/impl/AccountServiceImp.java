@@ -78,7 +78,7 @@ public class AccountServiceImp implements AccountService {
     public HttpResponseObject getAccoutByPersonId(Long personId) {
         Optional<Account> accountOptional = accountRepository.findByPersonId(personId);
         if(accountOptional.isEmpty()){
-            throw new NotFoundException("Can't find account with id = " + personId);
+            throw new UserNotFoundException("Can't find account with id = " + personId);
         }
 
         Account account = accountOptional.get();
@@ -95,7 +95,7 @@ public class AccountServiceImp implements AccountService {
     public HttpResponseObject getAccoutByUsername(String username) {
         Optional<Account> accountOptional = accountRepository.findByUsername(username);
         if(accountOptional.isEmpty()){
-            throw new NotFoundException("Can't find account with username = " + username);
+            throw new UserNotFoundException("Can't find account with username = " + username);
         }
 
         Account account = accountOptional.get();
@@ -113,7 +113,7 @@ public class AccountServiceImp implements AccountService {
         String username = sendActiveCodeRequest.getUsername();
         Optional<Account> accountOptional = accountRepository.findByUsername(username);
         if(accountOptional.isEmpty()){
-            throw new NotFoundException("Can't find account with username = " + username);
+            throw new UserNotFoundException("Can't find account with username = " + username);
         }
 
         Account account = accountOptional.get();
@@ -158,7 +158,7 @@ public class AccountServiceImp implements AccountService {
         String username = activeAccountRequest.getUsername();
         Optional<Account> accountOptional = accountRepository.findByUsername(username);
         if(accountOptional.isEmpty()){
-            throw new NotFoundException("Can't find account with username = " + username);
+            throw new UserNotFoundException("Can't find account with username = " + username);
         }
 
         Account account = accountOptional.get();
@@ -198,7 +198,7 @@ public class AccountServiceImp implements AccountService {
         String username = blockAccountRequest.getUsername();
         Optional<Account> accountOptional = accountRepository.findByUsername(username);
         if(accountOptional.isEmpty()){
-            throw new NotFoundException("Can't find account with username = " + username);
+            throw new UserNotFoundException("Can't find account with username = " + username);
         }
 
         Account account = accountOptional.get();
@@ -227,7 +227,7 @@ public class AccountServiceImp implements AccountService {
         String username = unBlockAccountRequest.getUsername();
         Optional<Account> accountOptional = accountRepository.findByUsername(username);
         if(accountOptional.isEmpty()){
-            throw new NotFoundException("Can't find account with username = " + username);
+            throw new UserNotFoundException("Can't find account with username = " + username);
         }
 
         Account account = accountOptional.get();
@@ -256,7 +256,7 @@ public class AccountServiceImp implements AccountService {
         String username = changePasswordRequest.getUsername();
         Optional<Account> accountOptional = accountRepository.findByUsername(username);
         if(accountOptional.isEmpty()){
-            throw new NotFoundException("Can't find account with username = " + username);
+            throw new UserNotFoundException("Can't find account with username = " + username);
         }
 
         Account account = accountOptional.get();
@@ -287,7 +287,7 @@ public class AccountServiceImp implements AccountService {
     public HttpResponseObject uploadImage(String username, MultipartFile file) {
         Optional<Account> accountOptional = accountRepository.findByUsername(username);
         if(accountOptional.isEmpty()){
-            throw new NotFoundException("Can't find account with username = " + username);
+            throw new UserNotFoundException("Can't find account with username = " + username);
         }
 
         Account account = accountOptional.get();
@@ -329,7 +329,7 @@ public class AccountServiceImp implements AccountService {
     public HttpResponseObject updateVnpay(String username, MultipartFile file) {
         Optional<Account> accountOptional = accountRepository.findByUsername(username);
         if(accountOptional.isEmpty()){
-            throw new NotFoundException("Can't find account with username = " + username);
+            throw new UserNotFoundException("Can't find account with username = " + username);
         }
 
         Account account = accountOptional.get();

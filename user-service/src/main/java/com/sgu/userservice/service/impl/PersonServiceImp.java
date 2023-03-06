@@ -4,8 +4,7 @@ import com.sgu.userservice.constant.ConstantMessage;
 import com.sgu.userservice.dto.request.PersonRequest;
 import com.sgu.userservice.dto.response.HttpResponseObject;
 import com.sgu.userservice.exception.BadRequestException;
-import com.sgu.userservice.exception.NotFoundException;
-import com.sgu.userservice.model.Account;
+import com.sgu.userservice.exception.UserNotFoundException;
 import com.sgu.userservice.model.Pagination;
 import com.sgu.userservice.model.Person;
 import com.sgu.userservice.repository.PersonRepository;
@@ -18,10 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,7 +62,7 @@ public class PersonServiceImp implements PersonService {
     public HttpResponseObject getAccoutByPersonId(Long id) {
         Optional<Person> personOptional = personRepository.findById(id);
         if(personOptional.isEmpty()){
-            throw new NotFoundException("Can't find person with id = " + id);
+            throw new UserNotFoundException("Can't find person with id = " + id);
         }
 
         Person person = personOptional.get();
@@ -83,7 +79,7 @@ public class PersonServiceImp implements PersonService {
     public HttpResponseObject updatePerson(Long id, PersonRequest personRequest){
         Optional<Person> personOptional = personRepository.findById(id);
         if(personOptional.isEmpty()){
-            throw new NotFoundException("Can't find person with id = " + id);
+            throw new UserNotFoundException("Can't find person with id = " + id);
         }
 
         Person person = personOptional.get();

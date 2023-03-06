@@ -17,7 +17,8 @@ public class RouterValidatorAdmin {
             "/api/v1/account/get-account-by-person-id/",
 	        "/api/v1/account/get-account-by-username",
 	        "/api/v1/person/get-all-person",
-	        "/api/v1/person/get-all-person-with-pagination"
+	        "/api/v1/person/get-all-person-with-pagination",
+            "/api/v1/person/delete"
     );
 
     public Predicate<ServerHttpRequest> isSecured =

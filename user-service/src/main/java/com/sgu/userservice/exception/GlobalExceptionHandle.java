@@ -1,8 +1,7 @@
 package com.sgu.userservice.exception;
 
-import com.sgu.userservice.constant.ConstantMessage;
 import com.sgu.userservice.dto.response.HttpResponseObject;
-import org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException;
+import jakarta.ws.rs.NotFoundException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.*;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -95,6 +94,17 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
                 .message(Arrays.asList(err))
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(httpResponseObject);
+
+    }
+
+    @ExceptionHandler(value = {UserNotFoundException.class})
+    public ResponseEntity<HttpResponseObject> handleNotFoundException(UserNotFoundException ex) {
+        String err = ex.getMessage();
+        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+                .code(HttpStatus.NOT_FOUND.value())
+                .message(Arrays.asList(err))
+                .build();
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(httpResponseObject);
 
     }
 
