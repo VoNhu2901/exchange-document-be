@@ -5,16 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4db51efe-1af3-43f3-9f34-271fd4517297" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_cloudinary_cloudinary_core_1_31_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_cloudinary_cloudinary_http44_1_31_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_10_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_12_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpmime_4_5_14.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/dto/request/DeleteRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/sgu/apigateway/filter/AuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/sgu/apigateway/filter/AuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/sgu/apigateway/filter/RouterValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/sgu/apigateway/filter/RouterValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/sgu/apigateway/filter/RouterValidatorAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/sgu/apigateway/filter/RouterValidatorAdmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/exception/GlobalExceptionHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/exception/GlobalExceptionHandle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/exception/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/exception/UserNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/AccountServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/AccountServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/PersonServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/PersonServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/UserServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/UserServiceImp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +176,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/api-gateway/src/main/java/com/sgu/apigateway/filter/AuthenticationFilter.java</url>
-          <line>86</line>
+          <line>91</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
