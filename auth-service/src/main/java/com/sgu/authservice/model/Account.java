@@ -43,4 +43,6 @@ public class Account{
     private String createdAt;
     @Field("updated_at")
     private String updatedAt;
+    @Field("otp_created_at")
+    private String otpCreatedAt;
 }

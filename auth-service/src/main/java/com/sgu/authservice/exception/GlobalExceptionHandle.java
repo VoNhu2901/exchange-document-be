@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.util.Arrays;
+
 @RestControllerAdvice
 public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {NotFound.class})
@@ -14,7 +16,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
        HttpResponseObject httpResponse = new HttpResponseObject()
                .builder()
                .code(HttpStatus.NOT_FOUND.value())
-               .message(ex.getMessage())
+               .message(Arrays.asList(ex.getMessage()))
                .build();
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(httpResponse);
@@ -28,7 +30,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
         HttpResponseObject httpResponse = new HttpResponseObject()
                 .builder()
                 .code(HttpStatus.FORBIDDEN.value())
-                .message(ex.getMessage())
+                .message(Arrays.asList(ex.getMessage()))
                 .build();
 
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(httpResponse);
@@ -42,7 +44,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
         HttpResponseObject httpResponse = new HttpResponseObject()
                 .builder()
                 .code(HttpStatus.BAD_REQUEST.value())
-                .message(ex.getMessage())
+                .message(Arrays.asList(ex.getMessage()))
                 .build();
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(httpResponse);
@@ -57,7 +59,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
         HttpResponseObject httpResponse = new HttpResponseObject()
                 .builder()
                 .code(HttpStatus.UNAUTHORIZED.value())
-                .message(ex.getMessage())
+                .message(Arrays.asList(ex.getMessage()))
                 .build();
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(httpResponse);
