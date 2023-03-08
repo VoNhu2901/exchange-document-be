@@ -2,14 +2,15 @@ package com.sgu.userservice.service.impl;
 
 import com.sgu.userservice.constant.ConstantMessage;
 import com.sgu.userservice.constant.Role;
+import com.sgu.userservice.dto.request.DeleteRequest;
 import com.sgu.userservice.dto.request.UserRequest;
 import com.sgu.userservice.dto.response.HttpResponseObject;
 import com.sgu.userservice.exception.BadRequestException;
+import com.sgu.userservice.exception.UserNotFoundException;
 import com.sgu.userservice.model.Account;
 import com.sgu.userservice.model.Person;
 import com.sgu.userservice.repository.AccountRepository;
 import com.sgu.userservice.repository.PersonRepository;
-import com.sgu.userservice.service.PersonService;
 import com.sgu.userservice.service.UserService;
 import com.sgu.userservice.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -77,5 +79,28 @@ public class UserServiceImp implements UserService {
                 .data(Arrays.asList(saveAccount,savePerson))
                 .build();
         return httpResponseObject;
+    }
+
+    @Override
+    public HttpResponseObject delete(DeleteRequest deleteRequest) {
+        Long id = deleteRequest.getId();
+        Optional<Person> personOptional = personRepository.findById(id);
+        Optional<Account> accountOptional = accountRepository.findByPersonId(id);
+
+        if(personOptional.isEmpty() || accountOptional.isEmpty()){
+            throw new UserNotFoundException("Can't find account and person with id = " + id);
+        }
+
+
+        personRepository.delete(personOptional.get());
+        accountRepository.delete(accountOptional.get());
+
+        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+                .code(HttpStatus.OK.value())
+                .message(Arrays.asList(ConstantMessage.SUCCESS))
+                .data(Arrays.asList(personOptional.get(),accountOptional.get()))
+                .build();
+        return httpResponseObject;
+
     }
 }
