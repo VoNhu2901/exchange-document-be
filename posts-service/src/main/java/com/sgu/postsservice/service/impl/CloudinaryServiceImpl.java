@@ -24,12 +24,12 @@ public class CloudinaryServiceImpl implements CloudinaryService {
     }
 
 
-    public Map<?, ?> upload(MultipartFile multipartFile) throws InternalServerException {
+    public Map<?, ?> upload(MultipartFile multipartFile,String folder) throws InternalServerException {
         if (multipartFile.isEmpty()) throw new BadRequestException("File is not exist!!");
         try {
             File file = convert(multipartFile);
             Map<?, ?> resultMap = cloudinary.uploader()
-                    .upload(file, ObjectUtils.asMap("folder", "category/", "",""));
+                    .upload(file, ObjectUtils.asMap("folder", folder, "",""));
             file.delete();
             return resultMap;
         } catch (IOException ioException) {

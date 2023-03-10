@@ -2,21 +2,21 @@ package com.sgu.postsservice.service;
 
 import com.sgu.postsservice.dto.request.CategoryRequest;
 import com.sgu.postsservice.dto.request.DeleteCategory;
-import com.sgu.postsservice.dto.response.HttpResponseObject;
+import com.sgu.postsservice.dto.response.HttpResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface CategoryService {
-    public HttpResponseObject getAll();
+    public HttpResponseEntity getAll();
 
-    public HttpResponseObject getAllWithPagiantion(int page, int size);
+    public HttpResponseEntity getAllWithPagiantion(int page, int size);
 
-    public HttpResponseObject getById(Long id);
+    public HttpResponseEntity getById(Long id);
 
-    public HttpResponseObject create(CategoryRequest categoryRequest);
+    public HttpResponseEntity create(CategoryRequest categoryRequest);
 
-    public HttpResponseObject update(Long id, CategoryRequest categoryRequest);
+    public HttpResponseEntity update(Long id, CategoryRequest categoryRequest);
 
-    public HttpResponseObject delete(DeleteCategory deleteCategory);
+    public HttpResponseEntity delete(DeleteCategory deleteCategory);
 
-    public HttpResponseObject uploadImage(MultipartFile file);
+    public HttpResponseEntity uploadImage(MultipartFile file);
 }

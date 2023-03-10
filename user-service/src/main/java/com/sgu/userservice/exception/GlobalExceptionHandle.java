@@ -20,11 +20,10 @@ import java.util.Arrays;
 public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMissingServletRequestParameter(MissingServletRequestParameterException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        ArrayList<String> obj = (ArrayList<String>) (ex.getDetailMessageArguments())[1];
 
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
-                .message(obj)
+                .message(ex.getMessage())
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(httpResponseObject);
     }
@@ -35,7 +34,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
 
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
-                .message(obj)
+                .message(ex.getMessage())
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(httpResponseObject);
     }
@@ -45,7 +44,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
         String err = ex.getCause().getCause().getMessage();
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
-                .message(Arrays.asList(err))
+                .message(err)
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(httpResponseObject);
     }
@@ -55,7 +54,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
         String err = ex.getMessage().split(":")[0];
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
-                .message(Arrays.asList(err))
+                .message(err)
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(httpResponseObject);
     }
@@ -67,7 +66,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
         String err = ex.getCause().getCause().getMessage();
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
-                .message(Arrays.asList(err))
+                .message(err)
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(httpResponseObject);
 
@@ -79,7 +78,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
         String err = ex.getCause().getCause().getMessage();
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
-                .message(Arrays.asList(err))
+                .message(err)
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(httpResponseObject);
 
@@ -91,7 +90,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
         String err = ex.getCause().getCause().getMessage();
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
-                .message(Arrays.asList(err))
+                .message(err)
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(httpResponseObject);
 
@@ -102,7 +101,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
         String err = ex.getMessage();
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.NOT_FOUND.value())
-                .message(Arrays.asList(err))
+                .message(err)
                 .build();
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(httpResponseObject);
 
@@ -113,7 +112,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
         String err = ex.getCause().getCause().getMessage();
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.NOT_FOUND.value())
-                .message(Arrays.asList(err))
+                .message(err)
                 .build();
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(httpResponseObject);
 
@@ -124,7 +123,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
         String err = ex.getMessage();
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.FORBIDDEN.value())
-                .message(Arrays.asList(err))
+                .message(err)
                 .build();
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(httpResponseObject);
 
@@ -137,7 +136,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
         String err = ex.getCause().getCause().getMessage();
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
-                .message(Arrays.asList(err))
+                .message(err)
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(httpResponseObject);
     }

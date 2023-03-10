@@ -22,7 +22,7 @@ public class UserController {
     public ResponseEntity<HttpResponseObject> register(@RequestBody @Valid UserRequest userRequest){
         HttpResponseObject httpResponseObject = userService.register(userRequest);
 
-        return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
+        return ResponseEntity.status(HttpStatus.CREATED).body(httpResponseObject);
     }
 
     @DeleteMapping("/delete")

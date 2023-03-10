@@ -1,6 +1,6 @@
 package com.sgu.userservice.service.impl;
 
-import com.sgu.userservice.constant.ConstantMessage;
+import com.sgu.userservice.constant.Constant;
 import com.sgu.userservice.constant.Role;
 import com.sgu.userservice.dto.request.DeleteRequest;
 import com.sgu.userservice.dto.request.UserRequest;
@@ -74,8 +74,8 @@ public class UserServiceImp implements UserService {
         Account saveAccount = accountRepository.save(newAccount);
 
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
-                .code(HttpStatus.OK.value())
-                .message(Arrays.asList(ConstantMessage.SUCCESS))
+                .code(HttpStatus.CREATED.value())
+                .message(Constant.SUCCESS)
                 .data(Arrays.asList(saveAccount,savePerson))
                 .build();
         return httpResponseObject;
@@ -97,7 +97,7 @@ public class UserServiceImp implements UserService {
 
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.OK.value())
-                .message(Arrays.asList(ConstantMessage.SUCCESS))
+                .message(Constant.SUCCESS)
                 .data(Arrays.asList(personOptional.get(),accountOptional.get()))
                 .build();
         return httpResponseObject;

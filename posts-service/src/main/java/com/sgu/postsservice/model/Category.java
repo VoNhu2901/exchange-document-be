@@ -1,6 +1,7 @@
 package com.sgu.postsservice.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sgu.postsservice.utils.DateUtils;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,14 +18,15 @@ import java.util.List;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
+    @Column(name = "category_id", unique = true, nullable = false)
     private Long id;
     private String name;
     private String url;
-    private String createdAt;
-    private String updatedAt;
+    @Builder.Default
+    private String createdAt = DateUtils.getNow();
+    @Builder.Default
+    private String updatedAt = DateUtils.getNow();
     @JsonIgnore
-
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude

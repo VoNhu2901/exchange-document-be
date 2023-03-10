@@ -2,7 +2,7 @@ package com.sgu.postsservice.controller;
 
 import com.sgu.postsservice.dto.request.CategoryRequest;
 import com.sgu.postsservice.dto.request.DeleteCategory;
-import com.sgu.postsservice.dto.response.HttpResponseObject;
+import com.sgu.postsservice.dto.response.HttpResponseEntity;
 import com.sgu.postsservice.service.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,65 +17,65 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
     @GetMapping("/get-all")
-    public ResponseEntity<HttpResponseObject> getAllAccount(){
-        HttpResponseObject httpResponseObject = categoryService.getAll();
+    public ResponseEntity<HttpResponseEntity> getAllAccount(){
+        HttpResponseEntity httpResponseEntity = categoryService.getAll();
 
-        return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
+        return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
     }
 
     @GetMapping("/get-all-with-pagination")
-    public ResponseEntity<HttpResponseObject> getAllAccountWithPagination(
+    public ResponseEntity<HttpResponseEntity> getAllAccountWithPagination(
             @RequestParam(name = "page", required = true) int page,
             @RequestParam(name = "size", required = true) int size
     ){
-        HttpResponseObject httpResponseObject = categoryService.getAllWithPagiantion(page,size);
+        HttpResponseEntity httpResponseEntity = categoryService.getAllWithPagiantion(page,size);
 
-        return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
+        return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
     }
 
     @GetMapping("/get-by-id/{id}")
-    public ResponseEntity<HttpResponseObject> getAllAccountWithPagination(
+    public ResponseEntity<HttpResponseEntity> getAllAccountWithPagination(
             @PathVariable(name = "id") Long id
     ){
-        HttpResponseObject httpResponseObject = categoryService.getById(id);
+        HttpResponseEntity httpResponseEntity = categoryService.getById(id);
 
-        return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
+        return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<HttpResponseObject> create(
+    public ResponseEntity<HttpResponseEntity> create(
             @RequestBody @Valid CategoryRequest categoryRequest
     ){
-        HttpResponseObject httpResponseObject = categoryService.create(categoryRequest);
+        HttpResponseEntity httpResponseEntity = categoryService.create(categoryRequest);
 
-        return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
+        return ResponseEntity.status(HttpStatus.CREATED).body(httpResponseEntity);
     }
 
     @PostMapping("/update/{id}")
-    public ResponseEntity<HttpResponseObject> updateById(
+    public ResponseEntity<HttpResponseEntity> updateById(
             @PathVariable(name = "id") Long id,
             @RequestBody @Valid CategoryRequest categoryRequest
     ){
-        HttpResponseObject httpResponseObject = categoryService.update(id,categoryRequest);
+        HttpResponseEntity httpResponseEntity = categoryService.update(id,categoryRequest);
 
-        return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
+        return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
     }
 
     @PostMapping("/upload-image")
-    public ResponseEntity<HttpResponseObject> updateById(
+    public ResponseEntity<HttpResponseEntity> updateById(
             @RequestParam(name = "file") MultipartFile file
             ){
-        HttpResponseObject httpResponseObject = categoryService.uploadImage(file);
+        HttpResponseEntity httpResponseEntity = categoryService.uploadImage(file);
+
+        return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<HttpResponseEntity> create(
+            @RequestBody @Valid DeleteCategory deleteCategory
+    ){
+        HttpResponseEntity httpResponseObject = categoryService.delete(deleteCategory);
 
         return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
     }
-
-//    @DeleteMapping("/delete")
-//    public ResponseEntity<HttpResponseObject> create(
-//            @RequestBody @Valid DeleteCategory deleteCategory
-//    ){
-//        HttpResponseObject httpResponseObject = categoryService.delete(deleteCategory);
-//
-//        return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
-//    }
 }
