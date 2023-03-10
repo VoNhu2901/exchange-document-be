@@ -1,6 +1,6 @@
 package com.sgu.userservice.service.impl;
 
-import com.sgu.userservice.constant.ConstantMessage;
+import com.sgu.userservice.constant.Constant;
 import com.sgu.userservice.dto.request.*;
 import com.sgu.userservice.dto.response.HttpResponseObject;
 import com.sgu.userservice.exception.*;
@@ -47,7 +47,7 @@ public class AccountServiceImp implements AccountService {
         HttpResponseObject httpResponseObject = new HttpResponseObject().builder()
                 .code(HttpStatus.OK.value())
                 .data(accountList)
-                .message(Arrays.asList(ConstantMessage.SUCCESS))
+                .message(Constant.SUCCESS)
                 .build();
         return httpResponseObject;
     }
@@ -66,7 +66,7 @@ public class AccountServiceImp implements AccountService {
 
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.OK.value())
-                .message(Arrays.asList(ConstantMessage.SUCCESS))
+                .message(Constant.SUCCESS)
                 .pagination(pagination)
                 .data(accountList)
                 .build();
@@ -85,7 +85,7 @@ public class AccountServiceImp implements AccountService {
         
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.OK.value())
-                .message(Arrays.asList(ConstantMessage.SUCCESS))
+                .message(Constant.SUCCESS)
                 .data(Arrays.asList(account))
                 .build();
         return httpResponseObject;
@@ -102,7 +102,7 @@ public class AccountServiceImp implements AccountService {
 
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.OK.value())
-                .message(Arrays.asList(ConstantMessage.SUCCESS))
+                .message(Constant.SUCCESS)
                 .data(Arrays.asList(account))
                 .build();
         return httpResponseObject;
@@ -147,7 +147,7 @@ public class AccountServiceImp implements AccountService {
 
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.OK.value())
-                .message(Arrays.asList(ConstantMessage.SUCCESS))
+                .message(Constant.SUCCESS)
                 .data(Arrays.asList(emailDetails))
                 .build();
         return httpResponseObject;
@@ -188,7 +188,7 @@ public class AccountServiceImp implements AccountService {
         accountRepository.save(account);
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.OK.value())
-                .message(Arrays.asList(ConstantMessage.SUCCESS))
+                .message(Constant.SUCCESS)
                 .build();
         return httpResponseObject;
     }
@@ -217,7 +217,7 @@ public class AccountServiceImp implements AccountService {
 
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.OK.value())
-                .message(Arrays.asList(ConstantMessage.SUCCESS))
+                .message(Constant.SUCCESS)
                 .build();
         return httpResponseObject;
     }
@@ -246,7 +246,7 @@ public class AccountServiceImp implements AccountService {
 
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.OK.value())
-                .message(Arrays.asList(ConstantMessage.SUCCESS))
+                .message(Constant.SUCCESS)
                 .build();
         return httpResponseObject;
     }
@@ -277,7 +277,7 @@ public class AccountServiceImp implements AccountService {
 
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.OK.value())
-                .message(Arrays.asList(ConstantMessage.SUCCESS))
+                .message(Constant.SUCCESS)
                 .build();
         return httpResponseObject;
 
@@ -320,7 +320,7 @@ public class AccountServiceImp implements AccountService {
 
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.OK.value())
-                .message(Arrays.asList(ConstantMessage.SUCCESS))
+                .message(Constant.SUCCESS)
                 .build();
         return httpResponseObject;
     }
@@ -362,7 +362,7 @@ public class AccountServiceImp implements AccountService {
 
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.OK.value())
-                .message(Arrays.asList(ConstantMessage.SUCCESS))
+                .message(Constant.SUCCESS)
                 .build();
         return httpResponseObject;
     }

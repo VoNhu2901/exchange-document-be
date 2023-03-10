@@ -1,6 +1,7 @@
 package com.sgu.userservice.dto.response;
 
 import com.sgu.userservice.model.Pagination;
+import com.sgu.userservice.utils.DateUtils;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -15,14 +16,10 @@ import java.util.List;
 @Builder
 public class HttpResponseObject {
     private int code;
-    private List<String> message;
+    private String message;
     private List<?> data;
-    private final String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    @Builder.Default
+    private String time = DateUtils.getNowWithFormat();
     private Pagination pagination;
 
-    public HttpResponseObject(int code, List<String> message, List<?> data) {
-        this.code = code;
-        this.message = message;
-        this.data = data;
-    }
 }

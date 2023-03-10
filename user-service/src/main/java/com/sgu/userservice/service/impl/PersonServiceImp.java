@@ -1,6 +1,6 @@
 package com.sgu.userservice.service.impl;
 
-import com.sgu.userservice.constant.ConstantMessage;
+import com.sgu.userservice.constant.Constant;
 import com.sgu.userservice.dto.request.PersonRequest;
 import com.sgu.userservice.dto.response.HttpResponseObject;
 import com.sgu.userservice.exception.BadRequestException;
@@ -31,7 +31,7 @@ public class PersonServiceImp implements PersonService {
         HttpResponseObject httpResponseObject = new HttpResponseObject().builder()
                 .code(HttpStatus.OK.value())
                 .data(accountList)
-                .message(Arrays.asList(ConstantMessage.SUCCESS))
+                .message(Constant.SUCCESS)
                 .build();
         return httpResponseObject;
     }
@@ -50,7 +50,7 @@ public class PersonServiceImp implements PersonService {
 
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.OK.value())
-                .message(Arrays.asList(ConstantMessage.SUCCESS))
+                .message(Constant.SUCCESS)
                 .pagination(pagination)
                 .data(accountList)
                 .build();
@@ -69,7 +69,7 @@ public class PersonServiceImp implements PersonService {
 
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.OK.value())
-                .message(Arrays.asList(ConstantMessage.SUCCESS))
+                .message(Constant.SUCCESS)
                 .data(Arrays.asList(person))
                 .build();
         return httpResponseObject;
@@ -99,7 +99,7 @@ public class PersonServiceImp implements PersonService {
 
         HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                 .code(HttpStatus.OK.value())
-                .message(Arrays.asList(ConstantMessage.SUCCESS))
+                .message(Constant.SUCCESS)
                 .data(Arrays.asList(person))
                 .build();
         return httpResponseObject;

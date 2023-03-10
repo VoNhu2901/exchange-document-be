@@ -1,6 +1,6 @@
 package com.sgu.userservice.constant;
 
-public class ConstantMessage {
+public class Constant {
     public static final String BAD_REQUEST = "BAD REQUEST : ";
     public static final String SUCCESS = "SUCCESS";
 
