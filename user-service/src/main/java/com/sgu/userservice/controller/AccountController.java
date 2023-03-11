@@ -54,9 +54,9 @@ public class AccountController {
 
     @PostMapping("/send-otp-code")
     public ResponseEntity<HttpResponseEntity> sendOtpCode(
-            @RequestBody @Valid SendActiveCodeRequest sendActiveCodeRequest
+            @RequestBody @Valid SendOTPRequest sendOTPRequest
     ){
-        HttpResponseEntity httpResponseEntity = accountService.sendOtpCode(sendActiveCodeRequest);
+        HttpResponseEntity httpResponseEntity = accountService.sendOtpCode(sendOTPRequest);
 
         return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
     }

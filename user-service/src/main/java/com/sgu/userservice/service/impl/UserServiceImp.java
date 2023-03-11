@@ -2,9 +2,13 @@ package com.sgu.userservice.service.impl;
 
 import com.sgu.userservice.constant.Constant;
 import com.sgu.userservice.constant.Role;
+import com.sgu.userservice.dto.request.DeleteRequest;
 import com.sgu.userservice.dto.request.UserRequest;
 import com.sgu.userservice.dto.response.HttpResponseEntity;
 import com.sgu.userservice.exception.BadRequestException;
+import com.sgu.userservice.exception.ForbiddenException;
+import com.sgu.userservice.exception.NotFoundException;
+import com.sgu.userservice.exception.UserNotFoundException;
 import com.sgu.userservice.model.Account;
 import com.sgu.userservice.model.Person;
 import com.sgu.userservice.repository.AccountRepository;
@@ -13,10 +17,12 @@ import com.sgu.userservice.service.UserService;
 import com.sgu.userservice.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -27,10 +33,16 @@ public class UserServiceImp implements UserService {
 
     @Override
     public HttpResponseEntity register(UserRequest userRequest) {
-
-        if (!DateUtils.isValidDate(userRequest.getBirthday())) {
-            throw new BadRequestException("Birthday is invalid");
+        if(accountRepository.findByUsername(userRequest.getUsername()).isPresent()){
+            throw new ForbiddenException(
+                    String.format("Mssv=%s đã được đăng ký tài khoản",userRequest.getUsername()));
         }
+
+        if(personRepository.getByPhone(userRequest.getPhone()).isPresent()){
+            throw new ForbiddenException(
+                    String.format("Phone=%s đã được đăng ký tài khoản",userRequest.getPhone()));
+        }
+
 
         List<Person> personList = personRepository.findAll();
         personList.sort((p1, p2) -> {
@@ -38,7 +50,14 @@ public class UserServiceImp implements UserService {
             return p1.getId() > p2.getId() ? 1 : -1;
         });
 
-        Long newId = personList.get(personList.size() - 1).getId() + 1;
+        Long newId = 1L;
+        try{
+            newId = personList.get(personList.size() - 1).getId() + 1;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+
         String now = DateUtils.getNow();
 
         Person newPerson = Person.builder()
@@ -52,10 +71,13 @@ public class UserServiceImp implements UserService {
                 .updatedAt(now)
                 .build();
 
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
+
         Account newAccount = Account.builder()
                 .personId(newId)
                 .username(userRequest.getUsername())
-                .password(userRequest.getPassword())
+                .password(bCryptPasswordEncoder.encode(userRequest.getPassword()))
                 .role(Role.USER)
                 .avatar("")
                 .isBlock(false)

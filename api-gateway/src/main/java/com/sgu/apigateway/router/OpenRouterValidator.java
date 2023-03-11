@@ -16,7 +16,7 @@ public class OpenRouterValidator {
             "/api/v1/user/register",
             //account
             "/api/v1/account/send-otp-code",
-
+            "/api/v1/account/active-account",
             //person
             "/api/v1/person/get-person-by-id",
             //category

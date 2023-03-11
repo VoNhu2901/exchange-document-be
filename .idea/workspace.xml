@@ -4,37 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
-    <list default="true" id="057a62b2-ea6f-4424-8766-ce25a17a93da" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="4db51efe-1af3-43f3-9f34-271fd4517297" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_18_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_twilio_sdk_twilio_7_34_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__joda_time_joda_time_2_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/OTPSmsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/OTPSmsServiceImp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/sgu/apigateway/config/GatewayConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/sgu/apigateway/config/GatewayConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/sgu/apigateway/router/AdminRouterValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/sgu/apigateway/router/AdminRouterValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/sgu/apigateway/router/OpenRouterValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/sgu/apigateway/router/OpenRouterValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/controller/CategoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/controller/PostsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/controller/PostsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/dto/request/CategoryRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/dto/request/CategoryRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/dto/response/CategoryResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/dto/response/CategoryResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/dto/response/PostsResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/dto/response/PostsResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/model/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/model/Posts.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/model/Posts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/repository/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/repository/CategoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/repository/PostsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/repository/PostsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/service/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/service/CategoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/service/PostsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/service/PostsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/service/impl/CategoryServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/service/impl/CategoryServiceImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/service/impl/PostsServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/service/impl/PostsServiceImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/utils/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/utils/StringUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/dto/request/SendActiveCodeRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/dto/request/SendOTPRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/dto/request/UserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/dto/request/UserRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/repository/PersonRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/repository/PersonRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/AccountServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/AccountServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/UserServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/UserServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.properties" afterDir="false" />
     </list>
-
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="JpbToolWindowState">
-    <option name="isToolWindowVisible" value="false" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
@@ -49,31 +48,36 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectId" id="2Mr3f9cnrGGNIQ2FzdjDFU4kV1c" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectId" id="2MRwOxORmzcxKxdMkD4OWMTsdjS" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "/Users/mthuan/Desktop/LUANVAN_TMP/exchange-document-be/user-service/src/main/java/com/sgu/userservice/exception",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "project.propCompiler"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mthuan/Desktop/LUANVAN_TMP/exchange-document-be&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.sgu.userservice.service" />
       <recent name="com.sgu.authservice.constant" />
       <recent name="com.sgu.apigateway.filter" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/exception" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -81,8 +85,7 @@
       <recent name="com.sgu.apigateway.filter" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.PostsServiceApplication">
-
+  <component name="RunManager" selected="Application.AuthServiceApplication">
     <configuration name="ApiGatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.sgu.apigateway.ApiGatewayApplication" />
       <module name="api-gateway" />
@@ -135,27 +138,60 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="api-gateway" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="api-gateway" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-
-        <item itemvalue="Application.PostsServiceApplication" />
-        <item itemvalue="Application.DiscoveryServerApplication" />
         <item itemvalue="Application.ApiGatewayApplication" />
+        <item itemvalue="Application.DiscoveryServerApplication" />
         <item itemvalue="Application.AuthServiceApplication" />
         <item itemvalue="Application.UserServiceApplication" />
-
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="057a62b2-ea6f-4424-8766-ce25a17a93da" name="Changes" comment="" />
-      <created>1678511978008</created>
+      <changelist id="4db51efe-1af3-43f3-9f34-271fd4517297" name="Changes" comment="" />
+      <created>1677743677701</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1678511978008</updated>
+      <updated>1677743677701</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feature/user-service" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

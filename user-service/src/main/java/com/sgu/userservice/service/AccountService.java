@@ -16,7 +16,7 @@ public interface AccountService {
 
     public HttpResponseEntity getAccoutByUsername(String username);
 
-    public HttpResponseEntity sendOtpCode(SendActiveCodeRequest sendActiveCodeRequest);
+    public HttpResponseEntity sendOtpCode(SendOTPRequest sendOTPRequest);
 
     public HttpResponseEntity activeAccount(ActiveAccountRequest activeAccountRequest);
 

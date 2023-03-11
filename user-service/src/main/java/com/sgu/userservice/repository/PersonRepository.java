@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface PersonRepository extends MongoRepository<Person, ObjectId> {
     //@Query("{'id': ?0})")
     public Optional<Person> findById(Long id);
+
+    public Optional<Object> getByPhone(String phone);
 }

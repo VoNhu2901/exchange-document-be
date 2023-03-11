@@ -4,14 +4,13 @@ import com.sgu.userservice.constant.Constant;
 import com.sgu.userservice.dto.request.*;
 import com.sgu.userservice.dto.response.HttpResponseEntity;
 import com.sgu.userservice.exception.*;
-import com.sgu.userservice.model.Account;
-import com.sgu.userservice.model.ActiveAccountRequest;
-import com.sgu.userservice.model.EmailDetails;
-import com.sgu.userservice.model.Pagination;
+import com.sgu.userservice.model.*;
 import com.sgu.userservice.repository.AccountRepository;
+import com.sgu.userservice.repository.PersonRepository;
 import com.sgu.userservice.service.CloudinaryService;
 import com.sgu.userservice.service.EmailService;
 import com.sgu.userservice.service.AccountService;
+import com.sgu.userservice.service.OTPSmsService;
 import com.sgu.userservice.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -34,6 +33,10 @@ public class AccountServiceImp implements AccountService {
     private EmailService emailService;
     @Autowired
     private CloudinaryService cloudinaryService;
+    @Autowired
+    private OTPSmsService otpSmsService;
+    @Autowired
+    private PersonRepository personRepository;
 
     @Override
     public HttpResponseEntity getAllPerson() {
@@ -110,28 +113,25 @@ public class AccountServiceImp implements AccountService {
     }
 
     @Override
-    public HttpResponseEntity sendOtpCode(SendActiveCodeRequest sendActiveCodeRequest) {
-        Account account = accountRepository.findByUsername(sendActiveCodeRequest.getUsername()).orElseThrow(
+    public HttpResponseEntity sendOtpCode(SendOTPRequest sendOTPRequest) {
+        Account account = accountRepository.findByUsername(sendOTPRequest.getUsername()).orElseThrow(
                 ()->new NotFoundException(
                         String.format("Không thể tìm tài khoản có username=%s"
-                                ,sendActiveCodeRequest.getUsername()))
+                                , sendOTPRequest.getUsername()))
+        );
+        Person person = personRepository.findById(account.getPersonId()).orElseThrow(
+                ()->new NotFoundException(
+                        String.format("Không thể tìm người dùng có id=%s"
+                                , account.getPersonId()))
         );
 
         if(account.getIsBlock()){
             throw new ForbiddenException("Account has block: " + account.getReasonForBlock());
         }
 
-        Random random = new Random();
-        int min = 100000,max = 999999;
-        int otpCode = ThreadLocalRandom.current().nextInt(min, max + 1);
+        String otpRandomCode = this.createOTP();
 
-        EmailDetails emailDetails = EmailDetails.builder()
-                .recipient(sendActiveCodeRequest.getUsername())
-                .msgBody("<h1>Active code :"+otpCode+" </h1>")
-                .subject("Test send email spring boot")
-                .build();
-
-        Boolean isSend = emailService.sendSimpleMail(emailDetails);
+        Boolean isSend = otpSmsService.sendSMS(otpRandomCode,person.getPhone());
         if(!isSend){
             throw new BadGateWayException("Send mail fail");
         }
@@ -139,7 +139,7 @@ public class AccountServiceImp implements AccountService {
         //update otp code
         String updatedAt = String.valueOf(new Timestamp(System.currentTimeMillis()).getTime());
 
-        account.setOtpCode(String.valueOf(otpCode));
+        account.setOtpCode(otpRandomCode);
         account.setOtpCreatedAt(updatedAt);
 
         accountRepository.save(account);
@@ -148,9 +148,15 @@ public class AccountServiceImp implements AccountService {
         HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.OK.value())
                 .message(Constant.SUCCESS)
-                .data(Arrays.asList(emailDetails))
                 .build();
         return httpResponseEntity;
+    }
+
+    private String createOTP() {
+        Long min = 100000L,max = 999999L;
+        Long otpCode = ThreadLocalRandom.current().nextLong(min, max + 1);
+
+        return String.valueOf(otpCode);
     }
 
     @Override
