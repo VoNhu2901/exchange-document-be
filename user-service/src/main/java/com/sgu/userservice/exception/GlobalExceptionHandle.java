@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +23,6 @@ import java.util.stream.Collectors;
 public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMissingServletRequestParameter(MissingServletRequestParameterException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        System.out.println("MissingServletRequestParameterException");
         HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
                 .message(ex.getMessage())
@@ -44,6 +44,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleTypeMismatch(TypeMismatchException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+
         System.out.println("TypeMismatchException");
         String err = ex.getMessage();
         HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
@@ -97,6 +98,16 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
                 .message(ex.getMessage())
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(httpResponseEntity);
+    }
+
+    @ExceptionHandler(value = {UserNotFoundException.class})
+    public ResponseEntity<HttpResponseEntity> handleNotFoundException(UserNotFoundException ex) {
+        String err = ex.getMessage();
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
+                .code(HttpStatus.NOT_FOUND.value())
+                .message(err)
+                .build();
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(httpResponseEntity);
 
     }
 
@@ -127,6 +138,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {NullPointerException.class})
     public ResponseEntity<HttpResponseEntity> handleForbiddenException(NullPointerException ex) {
         String err = ex.getMessage();
+
         HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
                 .message(ex.getMessage())

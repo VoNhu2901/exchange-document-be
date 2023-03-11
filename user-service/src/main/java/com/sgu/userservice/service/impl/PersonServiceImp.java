@@ -35,6 +35,7 @@ public class PersonServiceImp implements PersonService {
                 accountList,
                 null
         );
+
         return httpResponseEntity;
     }
 
@@ -57,6 +58,7 @@ public class PersonServiceImp implements PersonService {
                 pagination
         );
 
+
         return httpResponseEntity;
     }
 
@@ -72,6 +74,7 @@ public class PersonServiceImp implements PersonService {
                 Arrays.asList(person),
         null
         );
+
         return httpResponseEntity;
     }
 
@@ -80,6 +83,7 @@ public class PersonServiceImp implements PersonService {
         Person person = personRepository.findById(id).orElseThrow(
                 ()-> new NotFoundException(String.format("Không thể tìm người duùng có id=%s",id))
         );
+
 
         if(!DateUtils.isValidDate(personRequest.getBirthday())){
             throw new BadRequestException("Birthday is invalid");
@@ -101,6 +105,7 @@ public class PersonServiceImp implements PersonService {
                 Arrays.asList(person),
                 null
         );
+
         return httpResponseEntity;
     }
 }

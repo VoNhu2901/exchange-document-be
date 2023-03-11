@@ -19,6 +19,7 @@ public class HttpResponseEntity {
     @Builder.Default
     private String time = DateUtils.getNowWithFormat();
     private Pagination pagination;
+
     public static HttpResponseEntity convertToResponeEntity(int code, String mesage, List<?> data,Pagination pagination) {
         return HttpResponseEntity.builder()
                 .code(code)
@@ -27,4 +28,5 @@ public class HttpResponseEntity {
                 .pagination(pagination)
                 .build();
     }
+
 }

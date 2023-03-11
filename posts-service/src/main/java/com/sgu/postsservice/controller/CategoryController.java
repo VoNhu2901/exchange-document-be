@@ -42,6 +42,15 @@ public class CategoryController {
         return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
     }
 
+    @GetMapping("/get-by-slug/{slug}")
+    public ResponseEntity<HttpResponseEntity> getBySlug(
+            @PathVariable(name = "slug") String slug
+    ){
+        HttpResponseEntity httpResponseEntity = categoryService.getBySlug(slug);
+
+        return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
+    }
+
     @PostMapping("/create")
     public ResponseEntity<HttpResponseEntity> create(
             @RequestBody @Valid CategoryRequest categoryRequest

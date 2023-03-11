@@ -1,5 +1,6 @@
 package com.sgu.userservice.controller;
 
+
 import com.sgu.userservice.dto.request.DeleteRequest;
 import com.sgu.userservice.dto.request.UserRequest;
 import com.sgu.userservice.dto.response.HttpResponseEntity;
@@ -28,4 +29,5 @@ public class UserController {
 
         return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
     }
+
 }

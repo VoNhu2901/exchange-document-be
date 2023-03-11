@@ -28,6 +28,7 @@ public class Posts {
     private String title;
     private String body;
     private Long price;
+    private String postsSlug;
     @Builder.Default
     private PostStatus postStatus = PostStatus.DISPLAY;
     @Builder.Default

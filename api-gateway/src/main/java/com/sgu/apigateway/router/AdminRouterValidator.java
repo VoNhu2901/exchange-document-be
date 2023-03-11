@@ -1,4 +1,4 @@
-package com.sgu.apigateway.filter;
+package com.sgu.apigateway.router;
 
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
@@ -7,18 +7,28 @@ import java.util.List;
 import java.util.function.Predicate;
 
 @Component
-public class RouterValidatorAdmin {
+public class AdminRouterValidator {
 
     public static final List<String> adminEndpoints= List.of(
-            "/api/v1/user/get-all-account",
-            "/api/v1/account/get-all-account",
+            //auth
+            //user
+            //account
             "/api/v1/account/get-all-account",
             "/api/v1/account/get-all-account-with-pagination",
             "/api/v1/account/get-account-by-person-id/",
 	        "/api/v1/account/get-account-by-username",
-	        "/api/v1/person/get-all-person",
-	        "/api/v1/person/get-all-person-with-pagination",
-            "/api/v1/person/delete"
+
+            //person
+            "/api/v1/person/get-all-person",
+            "/api/v1/person/get-all-person-with-pagination",
+            //account
+            "/api/v1/account/block-account",
+            "/api/v1/account/unblock-account",
+            //category
+            "/api/v1/category/get-by-id/",
+            "/api/v1/category/create",
+            //posts
+            "/api/v1/posts/admin-delete"
     );
 
     public Predicate<ServerHttpRequest> isSecured =

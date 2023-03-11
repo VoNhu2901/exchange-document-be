@@ -51,6 +51,7 @@ public class AccountServiceImp implements AccountService {
                 null
         );
 
+
         return httpResponseEntity;
     }
 
@@ -73,6 +74,7 @@ public class AccountServiceImp implements AccountService {
                 pagination
         );
 
+
         return httpResponseEntity;
     }
 
@@ -81,6 +83,7 @@ public class AccountServiceImp implements AccountService {
         Account account = accountRepository.findByPersonId(personId).orElseThrow(
                 ()->new NotFoundException(String.format("Không thể tìm tài khoản có id=%s",personId))
         );
+
 
         
         HttpResponseEntity httpResponseEntity = HttpResponseEntity.convertToResponeEntity(
@@ -217,6 +220,7 @@ public class AccountServiceImp implements AccountService {
                 Arrays.asList(account),
                 null
         );
+
         return httpResponseEntity;
     }
 
@@ -243,6 +247,7 @@ public class AccountServiceImp implements AccountService {
                 Arrays.asList(account),
                 null
         );
+
         return httpResponseEntity;
     }
 
@@ -320,6 +325,7 @@ public class AccountServiceImp implements AccountService {
         Account account = accountRepository.findByUsername(username).orElseThrow(
                 ()->new NotFoundException(String.format("Không thể tìm tài khoản có username=%s",username))
         );
+
 
 
         if(account.getIsBlock()){

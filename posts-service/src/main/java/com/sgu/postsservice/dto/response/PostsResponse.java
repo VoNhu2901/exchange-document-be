@@ -23,6 +23,7 @@ public class PostsResponse {
     private String title;
     private String body;
     private Long price;
+    private String postsSlug;
     private PostStatus postStatus;
     private String reasonBlock;
     private String thumbnail;
