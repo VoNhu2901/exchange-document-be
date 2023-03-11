@@ -2,8 +2,9 @@ package com.sgu.userservice.service.impl;
 
 import com.sgu.userservice.constant.Constant;
 import com.sgu.userservice.dto.request.PersonRequest;
-import com.sgu.userservice.dto.response.HttpResponseObject;
+import com.sgu.userservice.dto.response.HttpResponseEntity;
 import com.sgu.userservice.exception.BadRequestException;
+import com.sgu.userservice.exception.NotFoundException;
 import com.sgu.userservice.exception.UserNotFoundException;
 import com.sgu.userservice.model.Pagination;
 import com.sgu.userservice.model.Person;
@@ -26,18 +27,19 @@ public class PersonServiceImp implements PersonService {
     @Autowired
     PersonRepository personRepository;
     @Override
-    public HttpResponseObject getAllPerson() {
+    public HttpResponseEntity getAllPerson() {
         List<Person> accountList = personRepository.findAll();
-        HttpResponseObject httpResponseObject = new HttpResponseObject().builder()
-                .code(HttpStatus.OK.value())
-                .data(accountList)
-                .message(Constant.SUCCESS)
-                .build();
-        return httpResponseObject;
+        HttpResponseEntity httpResponseEntity = new HttpResponseEntity().convertToResponeEntity(
+                HttpStatus.OK.value(),
+                Constant.SUCCESS,
+                accountList,
+                null
+        );
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject getAllPersonWithPagination(int page, int size) {
+    public HttpResponseEntity getAllPersonWithPagination(int page, int size) {
         Pageable pageable = PageRequest.of(page-1,size);
         Page<Person> accountPage = personRepository.findAll(pageable);
         List<Person> accountList = accountPage.getContent();
@@ -48,41 +50,37 @@ public class PersonServiceImp implements PersonService {
                 .total_size(accountPage.getTotalElements())
                 .build();
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
-                .code(HttpStatus.OK.value())
-                .message(Constant.SUCCESS)
-                .pagination(pagination)
-                .data(accountList)
-                .build();
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.convertToResponeEntity(
+                HttpStatus.OK.value(),
+                Constant.SUCCESS,
+                accountList,
+                pagination
+        );
 
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject getAccoutByPersonId(Long id) {
-        Optional<Person> personOptional = personRepository.findById(id);
-        if(personOptional.isEmpty()){
-            throw new UserNotFoundException("Can't find person with id = " + id);
-        }
+    public HttpResponseEntity getById(Long id) {
+        Person person = personRepository.findById(id).orElseThrow(
+                ()-> new NotFoundException(String.format("Không thể tìm người duùng có id=%s",id))
+        );
 
-        Person person = personOptional.get();
-
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
-                .code(HttpStatus.OK.value())
-                .message(Constant.SUCCESS)
-                .data(Arrays.asList(person))
-                .build();
-        return httpResponseObject;
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.convertToResponeEntity(
+                HttpStatus.OK.value(),
+                Constant.SUCCESS,
+                Arrays.asList(person),
+        null
+        );
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject updatePerson(Long id, PersonRequest personRequest){
-        Optional<Person> personOptional = personRepository.findById(id);
-        if(personOptional.isEmpty()){
-            throw new UserNotFoundException("Can't find person with id = " + id);
-        }
+    public HttpResponseEntity updatePerson(Long id, PersonRequest personRequest){
+        Person person = personRepository.findById(id).orElseThrow(
+                ()-> new NotFoundException(String.format("Không thể tìm người duùng có id=%s",id))
+        );
 
-        Person person = personOptional.get();
         if(!DateUtils.isValidDate(personRequest.getBirthday())){
             throw new BadRequestException("Birthday is invalid");
         }
@@ -97,11 +95,12 @@ public class PersonServiceImp implements PersonService {
 
         personRepository.save(person);
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
-                .code(HttpStatus.OK.value())
-                .message(Constant.SUCCESS)
-                .data(Arrays.asList(person))
-                .build();
-        return httpResponseObject;
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.convertToResponeEntity(
+                HttpStatus.OK.value(),
+                Constant.SUCCESS,
+                Arrays.asList(person),
+                null
+        );
+        return httpResponseEntity;
     }
 }

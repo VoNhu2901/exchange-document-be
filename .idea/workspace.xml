@@ -5,106 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4db51efe-1af3-43f3-9f34-271fd4517297" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_zaxxer_HikariCP_5_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_projectreactor_netty_reactor_netty_core_1_1_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_projectreactor_netty_reactor_netty_http_1_1_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_persistence_jakarta_persistence_api_3_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_transaction_jakarta_transaction_api_2_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_antlr_antlr4_runtime_4_10_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_9_19.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_checkerframework_checker_qual_3_5_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_core_4_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_runtime_4_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_txw2_4_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_6_0_6_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_orm_hibernate_core_6_1_7_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_jandex_2_4_2_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_postgresql_postgresql_42_5_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_3_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_3_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_devtools_3_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_3_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_aop_3_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_cache_3_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_jpa_3_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_3_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_3_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_3_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_mail_3_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_reactor_netty_3_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_3_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_3_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_validation_3_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_3_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_webflux_3_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_3_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_3_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_commons_3_0_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_jpa_3_0_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_6_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aspects_6_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_6_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_6_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_6_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_6_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_6_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_6_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_6_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_orm_6_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_6_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_6_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_6_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webflux_6_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_6_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/config/WebClientConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/controller/PostsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/dto/request/ImageRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/dto/request/PostRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/dto/request/PostUpdateRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/dto/request/PostsDeleteRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/dto/request/PostsHiddenRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/dto/response/CategoryResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/dto/response/HttpResponseEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/dto/response/PostsResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/repository/PostImageRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/repository/PostsRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/service/PostsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/service/impl/PostsServiceImp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/utils/StringUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/exception/CategoryExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/exception/NotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/exception/ServerInternalException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/sgu/apigateway/filter/GatewayConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/sgu/apigateway/filter/GatewayConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/PostsServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/PostsServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/controller/CategoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/dto/response/HttpResponseObject.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/exception/GlobalExceptionHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/exception/GlobalExceptionHandle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/model/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/model/PostImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/model/PostImage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/model/PostStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/constant/PostStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/model/Posts.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/model/Posts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/service/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/service/CategoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/service/CloudinaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/service/CloudinaryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/service/impl/CategoryServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/service/impl/CategoryServiceImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/service/impl/CloudinaryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/service/impl/CloudinaryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/utils/DateUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/utils/DateUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/constant/ConstantMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/constant/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/controller/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/controller/PersonController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/dto/response/HttpResponseObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/dto/response/HttpResponseObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/dto/response/HttpResponseObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/dto/response/HttpResponseEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/exception/GlobalExceptionHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/exception/GlobalExceptionHandle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/PersonService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/AccountServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/AccountServiceImp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/PersonServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/PersonServiceImp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/UserServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/UserServiceImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/utils/DateUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/utils/DateUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,6 +32,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -139,26 +57,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/mthuan/Desktop/LUANVAN_TMP/exchange-document-be&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "/Users/mthuan/Desktop/LUANVAN_TMP/exchange-document-be/user-service/src/main/java/com/sgu/userservice/exception",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "project.propCompiler"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.sgu.postsservice.service" />
-      <recent name="com.sgu.postsservice.dto.request" />
       <recent name="com.sgu.authservice.constant" />
       <recent name="com.sgu.apigateway.filter" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/exception" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -234,11 +151,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.UserServiceApplication" />
-        <item itemvalue="Application.AuthServiceApplication" />
+        <item itemvalue="Application.PostsServiceApplication" />
         <item itemvalue="Application.DiscoveryServerApplication" />
         <item itemvalue="Application.ApiGatewayApplication" />
-        <item itemvalue="Application.PostsServiceApplication" />
+        <item itemvalue="Application.AuthServiceApplication" />
+        <item itemvalue="Application.UserServiceApplication" />
       </list>
     </recent_temporary>
   </component>

@@ -4,7 +4,7 @@ import com.sgu.userservice.constant.Constant;
 import com.sgu.userservice.constant.Role;
 import com.sgu.userservice.dto.request.DeleteRequest;
 import com.sgu.userservice.dto.request.UserRequest;
-import com.sgu.userservice.dto.response.HttpResponseObject;
+import com.sgu.userservice.dto.response.HttpResponseEntity;
 import com.sgu.userservice.exception.BadRequestException;
 import com.sgu.userservice.exception.UserNotFoundException;
 import com.sgu.userservice.model.Account;
@@ -28,7 +28,7 @@ public class UserServiceImp implements UserService {
     @Autowired
     private AccountRepository accountRepository;
     @Override
-    public HttpResponseObject register(UserRequest userRequest) {
+    public HttpResponseEntity register(UserRequest userRequest) {
 
         if(!DateUtils.isValidDate(userRequest.getBirthday())){
             throw new BadRequestException("Birthday is invalid");
@@ -73,16 +73,16 @@ public class UserServiceImp implements UserService {
         Person savePerson = personRepository.save(newPerson);
         Account saveAccount = accountRepository.save(newAccount);
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.CREATED.value())
                 .message(Constant.SUCCESS)
                 .data(Arrays.asList(saveAccount,savePerson))
                 .build();
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject delete(DeleteRequest deleteRequest) {
+    public HttpResponseEntity delete(DeleteRequest deleteRequest) {
         Long id = deleteRequest.getId();
         Optional<Person> personOptional = personRepository.findById(id);
         Optional<Account> accountOptional = accountRepository.findByPersonId(id);
@@ -95,12 +95,12 @@ public class UserServiceImp implements UserService {
         personRepository.delete(personOptional.get());
         accountRepository.delete(accountOptional.get());
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.OK.value())
                 .message(Constant.SUCCESS)
                 .data(Arrays.asList(personOptional.get(),accountOptional.get()))
                 .build();
-        return httpResponseObject;
+        return httpResponseEntity;
 
     }
 }

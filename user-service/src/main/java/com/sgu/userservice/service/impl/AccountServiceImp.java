@@ -2,7 +2,7 @@ package com.sgu.userservice.service.impl;
 
 import com.sgu.userservice.constant.Constant;
 import com.sgu.userservice.dto.request.*;
-import com.sgu.userservice.dto.response.HttpResponseObject;
+import com.sgu.userservice.dto.response.HttpResponseEntity;
 import com.sgu.userservice.exception.*;
 import com.sgu.userservice.model.Account;
 import com.sgu.userservice.model.ActiveAccountRequest;
@@ -36,24 +36,26 @@ public class AccountServiceImp implements AccountService {
     private CloudinaryService cloudinaryService;
 
     @Override
-    public HttpResponseObject getAllPerson() {
+    public HttpResponseEntity getAllPerson() {
 
         return null;
     }
 
     @Override
-    public HttpResponseObject getAllAccount() {
+    public HttpResponseEntity getAllAccount() {
         List<Account> accountList = accountRepository.findAll();
-        HttpResponseObject httpResponseObject = new HttpResponseObject().builder()
-                .code(HttpStatus.OK.value())
-                .data(accountList)
-                .message(Constant.SUCCESS)
-                .build();
-        return httpResponseObject;
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.convertToResponeEntity(
+                HttpStatus.OK.value(),
+                Constant.SUCCESS,
+                accountList,
+                null
+        );
+
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject getAllAccountWithPagination(int page, int size) {
+    public HttpResponseEntity getAllAccountWithPagination(int page, int size) {
         Pageable pageable = PageRequest.of(page-1,size);
         Page<Account> accountPage = accountRepository.findAll(pageable);
         List<Account> accountList = accountPage.getContent();
@@ -64,59 +66,54 @@ public class AccountServiceImp implements AccountService {
                 .total_size(accountPage.getTotalElements())
                 .build();
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
-                .code(HttpStatus.OK.value())
-                .message(Constant.SUCCESS)
-                .pagination(pagination)
-                .data(accountList)
-                .build();
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.convertToResponeEntity(
+                HttpStatus.OK.value(),
+                Constant.SUCCESS,
+                accountList,
+                pagination
+        );
 
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject getAccoutByPersonId(Long personId) {
-        Optional<Account> accountOptional = accountRepository.findByPersonId(personId);
-        if(accountOptional.isEmpty()){
-            throw new UserNotFoundException("Can't find account with id = " + personId);
-        }
+    public HttpResponseEntity getAccoutByPersonId(Long personId) {
+        Account account = accountRepository.findByPersonId(personId).orElseThrow(
+                ()->new NotFoundException(String.format("Không thể tìm tài khoản có id=%s",personId))
+        );
 
-        Account account = accountOptional.get();
         
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.convertToResponeEntity(
+                HttpStatus.OK.value(),
+                Constant.SUCCESS,
+                Arrays.asList(account),
+                null
+        );
+        return httpResponseEntity;
+    }
+
+    @Override
+    public HttpResponseEntity getAccoutByUsername(String username) {
+        Account account = accountRepository.findByUsername(username).orElseThrow(
+                ()->new NotFoundException(String.format("Không thể tìm tài khoản có username=%s",username))
+        );
+
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.OK.value())
                 .message(Constant.SUCCESS)
                 .data(Arrays.asList(account))
                 .build();
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject getAccoutByUsername(String username) {
-        Optional<Account> accountOptional = accountRepository.findByUsername(username);
-        if(accountOptional.isEmpty()){
-            throw new UserNotFoundException("Can't find account with username = " + username);
-        }
+    public HttpResponseEntity sendOtpCode(SendActiveCodeRequest sendActiveCodeRequest) {
+        Account account = accountRepository.findByUsername(sendActiveCodeRequest.getUsername()).orElseThrow(
+                ()->new NotFoundException(
+                        String.format("Không thể tìm tài khoản có username=%s"
+                                ,sendActiveCodeRequest.getUsername()))
+        );
 
-        Account account = accountOptional.get();
-
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
-                .code(HttpStatus.OK.value())
-                .message(Constant.SUCCESS)
-                .data(Arrays.asList(account))
-                .build();
-        return httpResponseObject;
-    }
-
-    @Override
-    public HttpResponseObject sendOtpCode(SendActiveCodeRequest sendActiveCodeRequest) {
-        String username = sendActiveCodeRequest.getUsername();
-        Optional<Account> accountOptional = accountRepository.findByUsername(username);
-        if(accountOptional.isEmpty()){
-            throw new UserNotFoundException("Can't find account with username = " + username);
-        }
-
-        Account account = accountOptional.get();
         if(account.getIsBlock()){
             throw new ForbiddenException("Account has block: " + account.getReasonForBlock());
         }
@@ -126,7 +123,7 @@ public class AccountServiceImp implements AccountService {
         int otpCode = ThreadLocalRandom.current().nextInt(min, max + 1);
 
         EmailDetails emailDetails = EmailDetails.builder()
-                .recipient(username)
+                .recipient(sendActiveCodeRequest.getUsername())
                 .msgBody("<h1>Active code :"+otpCode+" </h1>")
                 .subject("Test send email spring boot")
                 .build();
@@ -145,23 +142,21 @@ public class AccountServiceImp implements AccountService {
         accountRepository.save(account);
 
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.OK.value())
                 .message(Constant.SUCCESS)
                 .data(Arrays.asList(emailDetails))
                 .build();
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject activeAccount(ActiveAccountRequest activeAccountRequest) {
-        String username = activeAccountRequest.getUsername();
-        Optional<Account> accountOptional = accountRepository.findByUsername(username);
-        if(accountOptional.isEmpty()){
-            throw new UserNotFoundException("Can't find account with username = " + username);
-        }
-
-        Account account = accountOptional.get();
+    public HttpResponseEntity activeAccount(ActiveAccountRequest activeAccountRequest) {
+        Account account = accountRepository.findByUsername(activeAccountRequest.getUsername()).orElseThrow(
+                ()->new NotFoundException(
+                        String.format("Không thể tìm tài khoản có username=%s"
+                                ,activeAccountRequest.getUsername()))
+        );
         if(account.getIsBlock()){
             throw new ForbiddenException("Account has block: " + account.getReasonForBlock());
         }
@@ -186,22 +181,23 @@ public class AccountServiceImp implements AccountService {
         account.setIsActive(true);
         account.setUpdatedAt(DateUtils.getNow());
         accountRepository.save(account);
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
-                .code(HttpStatus.OK.value())
-                .message(Constant.SUCCESS)
-                .build();
-        return httpResponseObject;
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.convertToResponeEntity(
+                HttpStatus.OK.value(),
+                Constant.SUCCESS,
+                Arrays.asList(account),
+                null
+        );
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject blockAccount(BlockAccountRequest blockAccountRequest) {
+    public HttpResponseEntity blockAccount(BlockAccountRequest blockAccountRequest) {
         String username = blockAccountRequest.getUsername();
-        Optional<Account> accountOptional = accountRepository.findByUsername(username);
-        if(accountOptional.isEmpty()){
-            throw new UserNotFoundException("Can't find account with username = " + username);
-        }
 
-        Account account = accountOptional.get();
+        Account account = accountRepository.findByUsername(username).orElseThrow(
+                ()->new NotFoundException(String.format("Không thể tìm tài khoản có username=%s",username))
+        );
+
         if(account.getIsBlock()){
             throw new ForbiddenException("Account has block before : " + account.getReasonForBlock());
         }
@@ -215,22 +211,22 @@ public class AccountServiceImp implements AccountService {
 
 
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
-                .code(HttpStatus.OK.value())
-                .message(Constant.SUCCESS)
-                .build();
-        return httpResponseObject;
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.convertToResponeEntity(
+                HttpStatus.OK.value(),
+                Constant.SUCCESS,
+                Arrays.asList(account),
+                null
+        );
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject unBlockAccount(UnBlockAccountRequest unBlockAccountRequest) {
+    public HttpResponseEntity unBlockAccount(UnBlockAccountRequest unBlockAccountRequest) {
         String username = unBlockAccountRequest.getUsername();
-        Optional<Account> accountOptional = accountRepository.findByUsername(username);
-        if(accountOptional.isEmpty()){
-            throw new UserNotFoundException("Can't find account with username = " + username);
-        }
+        Account account = accountRepository.findByUsername(username).orElseThrow(
+                ()->new NotFoundException(String.format("Không thể tìm tài khoản có username=%s",username))
+        );
 
-        Account account = accountOptional.get();
         if(!account.getIsBlock()){
             throw new ForbiddenException("Account hasn't block before : " + account.getReasonForBlock());
         }
@@ -241,25 +237,21 @@ public class AccountServiceImp implements AccountService {
 
         accountRepository.save(account);
 
-
-
-
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
-                .code(HttpStatus.OK.value())
-                .message(Constant.SUCCESS)
-                .build();
-        return httpResponseObject;
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.convertToResponeEntity(
+                HttpStatus.OK.value(),
+                Constant.SUCCESS,
+                Arrays.asList(account),
+                null
+        );
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject changePassword(ChangePasswordRequest changePasswordRequest) {
+    public HttpResponseEntity changePassword(ChangePasswordRequest changePasswordRequest) {
         String username = changePasswordRequest.getUsername();
-        Optional<Account> accountOptional = accountRepository.findByUsername(username);
-        if(accountOptional.isEmpty()){
-            throw new UserNotFoundException("Can't find account with username = " + username);
-        }
-
-        Account account = accountOptional.get();
+        Account account = accountRepository.findByUsername(username).orElseThrow(
+                ()->new NotFoundException(String.format("Không thể tìm tài khoản có username=%s",username))
+        );
 
         if(account.getIsBlock()){
             throw new ForbiddenException("Account has block before : " + account.getReasonForBlock());
@@ -275,22 +267,20 @@ public class AccountServiceImp implements AccountService {
 
         accountRepository.save(account);
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.OK.value())
                 .message(Constant.SUCCESS)
                 .build();
-        return httpResponseObject;
+        return httpResponseEntity;
 
     }
 
     @Override
-    public HttpResponseObject uploadImage(String username, MultipartFile file) {
+    public HttpResponseEntity uploadImage(String username, MultipartFile file) {
         Optional<Account> accountOptional = accountRepository.findByUsername(username);
-        if(accountOptional.isEmpty()){
-            throw new UserNotFoundException("Can't find account with username = " + username);
-        }
-
-        Account account = accountOptional.get();
+        Account account = accountRepository.findByUsername(username).orElseThrow(
+                ()->new NotFoundException(String.format("Không thể tìm tài khoản có username=%s",username))
+        );
 
         if(account.getIsBlock()){
             throw new ForbiddenException("Account has block: " + account.getReasonForBlock());
@@ -318,21 +308,19 @@ public class AccountServiceImp implements AccountService {
         }
 
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.OK.value())
                 .message(Constant.SUCCESS)
                 .build();
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject updateVnpay(String username, MultipartFile file) {
-        Optional<Account> accountOptional = accountRepository.findByUsername(username);
-        if(accountOptional.isEmpty()){
-            throw new UserNotFoundException("Can't find account with username = " + username);
-        }
+    public HttpResponseEntity updateVnpay(String username, MultipartFile file) {
+        Account account = accountRepository.findByUsername(username).orElseThrow(
+                ()->new NotFoundException(String.format("Không thể tìm tài khoản có username=%s",username))
+        );
 
-        Account account = accountOptional.get();
 
         if(account.getIsBlock()){
             throw new ForbiddenException("Account has block: " + account.getReasonForBlock());
@@ -360,10 +348,10 @@ public class AccountServiceImp implements AccountService {
         }
 
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.OK.value())
                 .message(Constant.SUCCESS)
                 .build();
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 }

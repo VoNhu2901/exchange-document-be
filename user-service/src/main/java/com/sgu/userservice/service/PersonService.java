@@ -1,16 +1,14 @@
 package com.sgu.userservice.service;
 
 import com.sgu.userservice.dto.request.PersonRequest;
-import com.sgu.userservice.dto.response.HttpResponseObject;
-
-import java.text.ParseException;
+import com.sgu.userservice.dto.response.HttpResponseEntity;
 
 public interface PersonService {
-    public HttpResponseObject getAllPerson();
+    public HttpResponseEntity getAllPerson();
 
-    public HttpResponseObject getAllPersonWithPagination(int page, int size);
+    public HttpResponseEntity getAllPersonWithPagination(int page, int size);
 
-    public HttpResponseObject getAccoutByPersonId(Long personId);
+    public HttpResponseEntity getById(Long personId);
 
-    public HttpResponseObject updatePerson(Long id, PersonRequest personRequest);
+    public HttpResponseEntity updatePerson(Long id, PersonRequest personRequest);
 }
