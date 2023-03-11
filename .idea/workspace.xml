@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4db51efe-1af3-43f3-9f34-271fd4517297" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/exception/CategoryExistsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/exception/NotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/exception/ServerInternalException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/controller/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/controller/PersonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/dto/response/HttpResponseObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/dto/response/HttpResponseEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/exception/GlobalExceptionHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/exception/GlobalExceptionHandle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/PersonService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/AccountServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/AccountServiceImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/PersonServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/PersonServiceImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/UserServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/service/impl/UserServiceImp.java" afterDir="false" />
-    </list>
+    <list default="true" id="4db51efe-1af3-43f3-9f34-271fd4517297" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
