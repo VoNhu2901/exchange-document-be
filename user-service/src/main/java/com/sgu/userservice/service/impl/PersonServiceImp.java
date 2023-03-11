@@ -4,6 +4,7 @@ import com.sgu.userservice.constant.Constant;
 import com.sgu.userservice.dto.request.PersonRequest;
 import com.sgu.userservice.dto.response.HttpResponseEntity;
 import com.sgu.userservice.exception.BadRequestException;
+import com.sgu.userservice.exception.NotFoundException;
 import com.sgu.userservice.exception.UserNotFoundException;
 import com.sgu.userservice.model.Pagination;
 import com.sgu.userservice.model.Person;
@@ -28,11 +29,13 @@ public class PersonServiceImp implements PersonService {
     @Override
     public HttpResponseEntity getAllPerson() {
         List<Person> accountList = personRepository.findAll();
-        HttpResponseEntity httpResponseEntity = new HttpResponseEntity().builder()
-                .code(HttpStatus.OK.value())
-                .data(accountList)
-                .message(Constant.SUCCESS)
-                .build();
+        HttpResponseEntity httpResponseEntity = new HttpResponseEntity().convertToResponeEntity(
+                HttpStatus.OK.value(),
+                Constant.SUCCESS,
+                accountList,
+                null
+        );
+
         return httpResponseEntity;
     }
 
@@ -48,41 +51,40 @@ public class PersonServiceImp implements PersonService {
                 .total_size(accountPage.getTotalElements())
                 .build();
 
-        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
-                .code(HttpStatus.OK.value())
-                .message(Constant.SUCCESS)
-                .pagination(pagination)
-                .data(accountList)
-                .build();
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.convertToResponeEntity(
+                HttpStatus.OK.value(),
+                Constant.SUCCESS,
+                accountList,
+                pagination
+        );
+
 
         return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseEntity getAccoutByPersonId(Long id) {
-        Optional<Person> personOptional = personRepository.findById(id);
-        if(personOptional.isEmpty()){
-            throw new UserNotFoundException("Can't find person with id = " + id);
-        }
+    public HttpResponseEntity getById(Long id) {
+        Person person = personRepository.findById(id).orElseThrow(
+                ()-> new NotFoundException(String.format("Không thể tìm người duùng có id=%s",id))
+        );
 
-        Person person = personOptional.get();
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.convertToResponeEntity(
+                HttpStatus.OK.value(),
+                Constant.SUCCESS,
+                Arrays.asList(person),
+        null
+        );
 
-        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
-                .code(HttpStatus.OK.value())
-                .message(Constant.SUCCESS)
-                .data(Arrays.asList(person))
-                .build();
         return httpResponseEntity;
     }
 
     @Override
     public HttpResponseEntity updatePerson(Long id, PersonRequest personRequest){
-        Optional<Person> personOptional = personRepository.findById(id);
-        if(personOptional.isEmpty()){
-            throw new UserNotFoundException("Can't find person with id = " + id);
-        }
+        Person person = personRepository.findById(id).orElseThrow(
+                ()-> new NotFoundException(String.format("Không thể tìm người duùng có id=%s",id))
+        );
 
-        Person person = personOptional.get();
+
         if(!DateUtils.isValidDate(personRequest.getBirthday())){
             throw new BadRequestException("Birthday is invalid");
         }
@@ -97,11 +99,13 @@ public class PersonServiceImp implements PersonService {
 
         personRepository.save(person);
 
-        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
-                .code(HttpStatus.OK.value())
-                .message(Constant.SUCCESS)
-                .data(Arrays.asList(person))
-                .build();
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.convertToResponeEntity(
+                HttpStatus.OK.value(),
+                Constant.SUCCESS,
+                Arrays.asList(person),
+                null
+        );
+
         return httpResponseEntity;
     }
 }

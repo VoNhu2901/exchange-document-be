@@ -79,4 +79,27 @@ public class UserServiceImp implements UserService {
         return httpResponseEntity;
     }
 
+    @Override
+    public HttpResponseEntity delete(DeleteRequest deleteRequest) {
+        Long id = deleteRequest.getId();
+        Optional<Person> personOptional = personRepository.findById(id);
+        Optional<Account> accountOptional = accountRepository.findByPersonId(id);
+
+        if(personOptional.isEmpty() || accountOptional.isEmpty()){
+            throw new UserNotFoundException("Can't find account and person with id = " + id);
+        }
+
+
+        personRepository.delete(personOptional.get());
+        accountRepository.delete(accountOptional.get());
+
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
+                .code(HttpStatus.OK.value())
+                .message(Constant.SUCCESS)
+                .data(Arrays.asList(personOptional.get(),accountOptional.get()))
+                .build();
+        return httpResponseEntity;
+
+    }
+
 }

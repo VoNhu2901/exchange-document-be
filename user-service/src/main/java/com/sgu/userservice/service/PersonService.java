@@ -8,7 +8,8 @@ public interface PersonService {
 
     public HttpResponseEntity getAllPersonWithPagination(int page, int size);
 
-    public HttpResponseEntity getAccoutByPersonId(Long personId);
+    public HttpResponseEntity getById(Long personId);
+
 
     public HttpResponseEntity updatePerson(Long id, PersonRequest personRequest);
 }

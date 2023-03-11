@@ -1,5 +1,7 @@
 package com.sgu.userservice.controller;
 
+
+import com.sgu.userservice.dto.request.DeleteRequest;
 import com.sgu.userservice.dto.request.UserRequest;
 import com.sgu.userservice.dto.response.HttpResponseEntity;
 import com.sgu.userservice.service.UserService;
@@ -21,5 +23,11 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(httpResponseEntity);
     }
 
+    @DeleteMapping("/delete")
+    public ResponseEntity<HttpResponseEntity> delete(@RequestBody @Valid DeleteRequest deleteRequest){
+        HttpResponseEntity httpResponseEntity = userService.delete(deleteRequest);
+
+        return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
+    }
 
 }

@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="057a62b2-ea6f-4424-8766-ce25a17a93da" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
@@ -26,10 +27,14 @@
       <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/service/impl/PostsServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/service/impl/PostsServiceImp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/utils/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/posts-service/src/main/java/com/sgu/postsservice/utils/StringUtils.java" afterDir="false" />
     </list>
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
   </component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
@@ -52,10 +57,32 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "/Users/mthuan/Desktop/LUANVAN_TMP/exchange-document-be/user-service/src/main/java/com/sgu/userservice/exception",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "project.propCompiler"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.UserServiceApplication">
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.sgu.authservice.constant" />
+      <recent name="com.sgu.apigateway.filter" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/user-service/src/main/java/com/sgu/userservice/exception" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.sgu.apigateway.dto" />
+      <recent name="com.sgu.apigateway.filter" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.PostsServiceApplication">
+
     <configuration name="ApiGatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.sgu.apigateway.ApiGatewayApplication" />
       <module name="api-gateway" />
@@ -110,10 +137,13 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ApiGatewayApplication" />
-        <item itemvalue="Application.UserServiceApplication" />
-        <item itemvalue="Application.AuthServiceApplication" />
+
+        <item itemvalue="Application.PostsServiceApplication" />
         <item itemvalue="Application.DiscoveryServerApplication" />
+        <item itemvalue="Application.ApiGatewayApplication" />
+        <item itemvalue="Application.AuthServiceApplication" />
+        <item itemvalue="Application.UserServiceApplication" />
+
       </list>
     </recent_temporary>
   </component>

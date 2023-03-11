@@ -36,7 +36,9 @@ public class PersonController {
     public ResponseEntity<HttpResponseEntity> getAccountByPersonId(
             @PathVariable(name = "id") Long personId
     ){
-        HttpResponseEntity httpResponseEntity = personService.getAccoutByPersonId(personId);
+
+        HttpResponseEntity httpResponseEntity = personService.getById(personId);
+
 
         return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
     }

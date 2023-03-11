@@ -11,15 +11,18 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
+import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.ArrayList;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMissingServletRequestParameter(MissingServletRequestParameterException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-
         HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
                 .message(ex.getMessage())
@@ -29,21 +32,24 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        ArrayList<String> obj = (ArrayList<String>) (ex.getDetailMessageArguments())[1];
-
+        List<String> stringList =  ex.getAllErrors().stream().map(err->{
+            return err.getDefaultMessage();
+        }).collect(Collectors.toList());
         HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
-                .message(ex.getMessage())
+                .message(stringList.toString())
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(httpResponseEntity);
     }
 
     @Override
     protected ResponseEntity<Object> handleTypeMismatch(TypeMismatchException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        String err = ex.getCause().getCause().getMessage();
+
+        System.out.println("TypeMismatchException");
+        String err = ex.getMessage();
         HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
-                .message(err)
+                .message(ex.getMessage())
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(httpResponseEntity);
     }
@@ -53,7 +59,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
         String err = ex.getMessage().split(":")[0];
         HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
-                .message(err)
+                .message(ex.getMessage())
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(httpResponseEntity);
     }
@@ -62,10 +68,10 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {
             IllegalArgumentException.class})
     public ResponseEntity<HttpResponseEntity> handleIllegalArgumentException(IllegalArgumentException ex) {
-        String err = ex.getCause().getCause().getMessage();
+        String err = ex.getMessage();
         HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
-                .message(err)
+                .message(ex.getMessage())
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(httpResponseEntity);
 
@@ -74,10 +80,10 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {
             BadRequestException.class})
     public ResponseEntity<HttpResponseEntity> handleBadRequestException(BadRequestException ex) {
-        String err = ex.getCause().getCause().getMessage();
+        String err = ex.getMessage();
         HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
-                .message(err)
+                .message(ex.getMessage())
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(httpResponseEntity);
 
@@ -89,10 +95,9 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
         String err = ex.getCause().getCause().getMessage();
         HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
-                .message(err)
+                .message(ex.getMessage())
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(httpResponseEntity);
-
     }
 
     @ExceptionHandler(value = {UserNotFoundException.class})
@@ -108,10 +113,10 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = {NotFoundException.class})
     public ResponseEntity<HttpResponseEntity> handleNotFoundException(NotFoundException ex) {
-        String err = ex.getCause().getCause().getMessage();
+        String err = ex.getMessage();
         HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.NOT_FOUND.value())
-                .message(err)
+                .message(ex.getMessage())
                 .build();
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(httpResponseEntity);
 
@@ -122,7 +127,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
         String err = ex.getMessage();
         HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.FORBIDDEN.value())
-                .message(err)
+                .message(ex.getMessage())
                 .build();
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(httpResponseEntity);
 
@@ -132,13 +137,30 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
     //
     @ExceptionHandler(value = {NullPointerException.class})
     public ResponseEntity<HttpResponseEntity> handleForbiddenException(NullPointerException ex) {
-        String err = ex.getCause().getCause().getMessage();
+        String err = ex.getMessage();
+
         HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
-                .message(err)
+                .message(ex.getMessage())
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(httpResponseEntity);
     }
+
+
+
+    @ExceptionHandler(value={MultipartException.class})
+    public ResponseEntity<HttpResponseEntity> handleMultipartException(MultipartException ex) {
+        String err = ex.getMessage();
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
+                .code(HttpStatus.BAD_REQUEST.value())
+                .message(ex.getMessage())
+                .build();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(httpResponseEntity);
+    }
+
+
+
+
 
 
 }
