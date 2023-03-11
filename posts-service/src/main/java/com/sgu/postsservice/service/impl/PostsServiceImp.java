@@ -63,19 +63,16 @@ public class PostsServiceImp implements PostsService {
             throw new NotFoundException("Tài khoản không tồn tại");
         }
 
-        Optional<Category> categoryOptional = categoryRepository.findById(postRequest.getCategoryId());
-        if(categoryOptional.isEmpty()){
-            throw new NotFoundException("Danh mục bài viết không tồn tại");
-        }
-
-        Category category = categoryOptional.get();
+        Category category = categoryRepository.findById(postRequest.getCategoryId()).orElseThrow(
+                ()-> new NotFoundException(String.format("Danh mục bài viết id=%s không tồn tại",postRequest.getCategoryId()))
+        );
 
         Posts postsEntity = convertToEntity(postRequest);
         postsEntity.setCategory(category);
         postsEntity.getPostImageList().forEach(item->item.setPosts(postsEntity));
 
         postsRepository.save(postsEntity);
-        List<Posts> postsList = Arrays.asList(postsEntity);
+        List<PostsResponse> postsList = Arrays.asList(this.convertToResponse(postsEntity));
 
         HttpResponseEntity httpResponseEntity = HttpResponseEntity.convertToResponeEntity(
                 HttpStatus.CREATED.value(),
@@ -484,6 +481,51 @@ public class PostsServiceImp implements PostsService {
         return httpResponseEntity;
     }
 
+    @Override
+    public HttpResponseEntity getByCategorySlug(String slug, int page, int size) {
+        Pageable pageable = PageRequest.of(page-1,size);
+        Category category = categoryRepository.findBySlug(slug)
+                .orElseThrow(()->new NotFoundException(
+                        String.format("Không thể tìm thấy slug=%s",slug)));
+        Page<Posts> postsPage = postsRepository.findAllByCategoryId(category.getId(),pageable);
+        List<PostsResponse> postsResponseList = postsPage.getContent()
+                .stream()
+                .map(this::convertToResponse)
+                .collect(Collectors.toList());
+
+        Pagination pagination = Pagination.builder()
+                .page(page)
+                .size(size)
+                .total_page(postsPage.getTotalPages())
+                .total_size(postsPage.getTotalElements())
+                .build();
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.convertToResponeEntity(
+                HttpStatus.OK.value(),
+                Constant.SUCCESS,
+                postsResponseList,
+                pagination
+        );
+        return httpResponseEntity;
+    }
+
+    @Override
+    public HttpResponseEntity getBySlug(String slug) {
+        Posts posts = postsRepository.getBySlug(slug).orElseThrow(
+                ()-> new NotFoundException(String.format("Bài viết với slug=%s không tồn tại",slug))
+        );
+
+        List<PostsResponse> postsResponseList = Arrays.asList(this.convertToResponse(posts));
+
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.convertToResponeEntity(
+                HttpStatus.OK.value(),
+                Constant.SUCCESS,
+                postsResponseList,
+                null
+        );
+        return httpResponseEntity;
+
+    }
+
     private int calcPriority(String title, List<String> keywordList) {
         int priority = 0;
         String encodeTitle = StringUtils.convertTextToEnglish(title);
@@ -504,6 +546,7 @@ public class PostsServiceImp implements PostsService {
                 .title(posts.getTitle())
                 .body(posts.getBody())
                 .price(posts.getPrice())
+                .postsSlug(posts.getPostsSlug())
                 .postStatus(posts.getPostStatus())
                 .reasonBlock(posts.getReasonBlock())
                 .thumbnail(posts.getThumbnail())
@@ -511,6 +554,7 @@ public class PostsServiceImp implements PostsService {
                         .id(category.getId())
                         .name(category.getName())
                         .url(category.getUrl())
+                        .categorySlug(category.getCategorySlug())
                         .createdAt(category.getCreatedAt())
                         .updatedAt(category.getUpdatedAt())
                         .build()
@@ -539,6 +583,7 @@ public class PostsServiceImp implements PostsService {
                         .collect(Collectors.toList()))
                 .reasonBlock("")
                 .thumbnail(postRequest.getImageList().get(0).getUrl())
+                .postsSlug(StringUtils.createSlug(postRequest.getTitle() + "-" + DateUtils.getNow()))
                 .build();
     }
 

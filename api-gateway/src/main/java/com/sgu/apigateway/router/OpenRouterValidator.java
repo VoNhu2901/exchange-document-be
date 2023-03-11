@@ -27,11 +27,13 @@ public class OpenRouterValidator {
             "/api/v1/posts/get-by-id",
             "/api/v1/posts/get-by-account-id",
             "/api/v1/posts/get-by-category-id",
+            "/api/v1/posts/get-by-category-slug",
             "/api/v1/posts/get-all-with-pagination",
             "/api/v1/posts/get-all-available",
             "/api/v1/posts/get-all-available-with-pagination",
             "/api/v1/posts/search-by-keyword",
-            "/api/v1/posts/search"
+            "/api/v1/posts/search",
+            "/api/v1/posts/get-by-posts-slug"
 
     );
 

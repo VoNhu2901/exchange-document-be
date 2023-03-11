@@ -13,6 +13,7 @@ import com.sgu.postsservice.repository.PostsRepository;
 import com.sgu.postsservice.service.CategoryService;
 import com.sgu.postsservice.service.CloudinaryService;
 import com.sgu.postsservice.utils.DateUtils;
+import com.sgu.postsservice.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -219,10 +220,30 @@ public class CategoryServiceImp implements CategoryService {
         }
     }
 
+    @Override
+    public HttpResponseEntity getBySlug(String slug) {
+        try{
+            Category category = categoryRepository.findBySlug(slug).orElseThrow(
+                    ()-> new NotFoundException(String.format("Không thể tìm danh mục với slug = %s",slug))
+            );
+            List<Category> categoryList = Arrays.asList(category);
+            HttpResponseEntity responseEntity = convertToResponeEntity(
+                    HttpStatus.OK.value(),
+                    Constant.SUCCESS,
+                    categoryList,
+                    null
+            );
+            return responseEntity;
+        }catch (Exception ex){
+            throw new ServerInternalException(ex.getMessage());
+        }
+    }
+
     private Category convertToEntity(CategoryRequest categoryRequest) {
         return Category.builder()
                 .name(categoryRequest.getName())
                 .url(categoryRequest.getUrl())
+                .categorySlug(StringUtils.createSlug(categoryRequest.getName()))
                 .build();
     }
 

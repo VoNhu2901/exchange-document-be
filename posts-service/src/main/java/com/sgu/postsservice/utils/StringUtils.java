@@ -1,9 +1,7 @@
 package com.sgu.postsservice.utils;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class StringUtils {
     public static String convertTextToEnglish(String s){
@@ -66,5 +64,19 @@ public class StringUtils {
             rs += a;
         }
         return rs;
+    }
+
+    public static String createSlug(String value) {
+
+        List<String> valueList = Arrays.asList(value.split(" "))
+                .stream()
+                .map(StringUtils::convertTextToEnglish)
+                .collect(Collectors.toList());
+
+        String slug = valueList.stream()
+                .map(Objects::toString)
+                .collect(Collectors.joining("-"));
+
+        return slug;
     }
 }

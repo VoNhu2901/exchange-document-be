@@ -19,4 +19,6 @@ public interface CategoryService {
     public HttpResponseEntity delete(DeleteCategory deleteCategory);
 
     public HttpResponseEntity uploadImage(MultipartFile file);
+
+    public HttpResponseEntity getBySlug(String slug);
 }

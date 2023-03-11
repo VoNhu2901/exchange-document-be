@@ -84,6 +84,26 @@ public class PostsController {
         return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
     }
 
+    @GetMapping("/get-by-posts-slug/{slug}")
+    public ResponseEntity<HttpResponseEntity> getBySlug(
+            @PathVariable("slug") String slug
+    ){
+        HttpResponseEntity httpResponseObject = postsService.getBySlug(slug);
+
+        return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
+    }
+
+    @GetMapping("/get-by-category-slug/{slug}")
+    public ResponseEntity<HttpResponseEntity> getBySlug(
+            @PathVariable("slug") String slug,
+            @RequestParam(name = "page") int page,
+            @RequestParam(name = "size") int size
+    ){
+        HttpResponseEntity httpResponseObject = postsService.getByCategorySlug(slug,page,size);
+
+        return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
+    }
+
     @GetMapping("/get-by-account-id/{id}")
     public ResponseEntity<HttpResponseEntity> getByAccountId(
             @PathVariable("id") Long id
