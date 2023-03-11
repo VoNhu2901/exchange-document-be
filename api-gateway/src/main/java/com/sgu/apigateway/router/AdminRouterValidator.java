@@ -26,6 +26,7 @@ public class AdminRouterValidator {
             "/api/v1/account/unblock-account",
             //category
             "/api/v1/category/get-by-id/",
+            "/api/v1/category/create",
             //posts
             "/api/v1/posts/admin-delete"
     );

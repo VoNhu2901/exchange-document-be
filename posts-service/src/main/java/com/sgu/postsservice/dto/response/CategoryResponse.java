@@ -20,5 +20,6 @@ public class CategoryResponse {
     private String url;
     private String createdAt;
     private String updatedAt;
+    private String categorySlug;
     private List<Posts> postsList;
 }

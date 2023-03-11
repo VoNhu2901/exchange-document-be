@@ -39,4 +39,8 @@ public interface PostsService {
     public HttpResponseEntity userDelete(PostsDeleteRequest postsDeleteRequest);
 
     public HttpResponseEntity adminDelete(PostsDeleteRequest postsDeleteRequest);
+
+    public HttpResponseEntity getByCategorySlug(String slug, int page, int size);
+
+    public HttpResponseEntity getBySlug(String slug);
 }

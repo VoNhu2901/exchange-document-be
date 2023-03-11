@@ -19,12 +19,12 @@ public class GatewayConfig {
     public RouteLocator routes(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route("auth-service", r -> r.path("/api/v1/auth/**")
-                        .filters(f -> f.filter(filter))
                         .uri("http://localhost:8081"))
                 .route("user-service", r -> r.path("/api/v1/account/**","/api/v1/person/**","/api/v1/user/**")
-                        //.filters(f -> f.filter(filter))
+                        .filters(f -> f.filter(filter))
                         .uri("http://localhost:8082"))
                 .route("posts-service", r -> r.path("/api/v1/category/**","/api/v1/posts/**","/api/v1/posts-image/**")
+                        .filters(f -> f.filter(filter))
                         .uri("http://localhost:8083"))
                 .build();
     }

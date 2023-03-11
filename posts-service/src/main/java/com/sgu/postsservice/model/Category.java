@@ -26,6 +26,7 @@ public class Category {
     private String createdAt = DateUtils.getNow();
     @Builder.Default
     private String updatedAt = DateUtils.getNow();
+    private String categorySlug;
     @JsonIgnore
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @EqualsAndHashCode.Exclude
