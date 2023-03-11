@@ -2,7 +2,7 @@ package com.sgu.userservice.service.impl;
 
 import com.sgu.userservice.constant.Constant;
 import com.sgu.userservice.dto.request.PersonRequest;
-import com.sgu.userservice.dto.response.HttpResponseObject;
+import com.sgu.userservice.dto.response.HttpResponseEntity;
 import com.sgu.userservice.exception.BadRequestException;
 import com.sgu.userservice.exception.UserNotFoundException;
 import com.sgu.userservice.model.Pagination;
@@ -26,18 +26,18 @@ public class PersonServiceImp implements PersonService {
     @Autowired
     PersonRepository personRepository;
     @Override
-    public HttpResponseObject getAllPerson() {
+    public HttpResponseEntity getAllPerson() {
         List<Person> accountList = personRepository.findAll();
-        HttpResponseObject httpResponseObject = new HttpResponseObject().builder()
+        HttpResponseEntity httpResponseEntity = new HttpResponseEntity().builder()
                 .code(HttpStatus.OK.value())
                 .data(accountList)
                 .message(Constant.SUCCESS)
                 .build();
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject getAllPersonWithPagination(int page, int size) {
+    public HttpResponseEntity getAllPersonWithPagination(int page, int size) {
         Pageable pageable = PageRequest.of(page-1,size);
         Page<Person> accountPage = personRepository.findAll(pageable);
         List<Person> accountList = accountPage.getContent();
@@ -48,18 +48,18 @@ public class PersonServiceImp implements PersonService {
                 .total_size(accountPage.getTotalElements())
                 .build();
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.OK.value())
                 .message(Constant.SUCCESS)
                 .pagination(pagination)
                 .data(accountList)
                 .build();
 
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject getAccoutByPersonId(Long id) {
+    public HttpResponseEntity getAccoutByPersonId(Long id) {
         Optional<Person> personOptional = personRepository.findById(id);
         if(personOptional.isEmpty()){
             throw new UserNotFoundException("Can't find person with id = " + id);
@@ -67,16 +67,16 @@ public class PersonServiceImp implements PersonService {
 
         Person person = personOptional.get();
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.OK.value())
                 .message(Constant.SUCCESS)
                 .data(Arrays.asList(person))
                 .build();
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject updatePerson(Long id, PersonRequest personRequest){
+    public HttpResponseEntity updatePerson(Long id, PersonRequest personRequest){
         Optional<Person> personOptional = personRepository.findById(id);
         if(personOptional.isEmpty()){
             throw new UserNotFoundException("Can't find person with id = " + id);
@@ -97,11 +97,11 @@ public class PersonServiceImp implements PersonService {
 
         personRepository.save(person);
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.OK.value())
                 .message(Constant.SUCCESS)
                 .data(Arrays.asList(person))
                 .build();
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 }

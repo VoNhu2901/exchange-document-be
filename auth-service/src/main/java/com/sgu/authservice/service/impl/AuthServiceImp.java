@@ -81,7 +81,7 @@ public class AuthServiceImp implements AuthService {
 
                 return new HttpResponseObject().builder()
                         .code(HttpStatus.OK.value())
-                        .message(Arrays.asList(Constant.SUCCESS))
+                        .message(Constant.SUCCESS)
                         .data(Arrays.asList(tokenResponse))
                         .build();
             }
@@ -139,7 +139,7 @@ public class AuthServiceImp implements AuthService {
 
                 return new HttpResponseObject().builder()
                         .code(HttpStatus.OK.value())
-                        .message(Arrays.asList(Constant.SUCCESS))
+                        .message(Constant.SUCCESS)
                         .data(Arrays.asList(refreshTokenResponse))
                         .build();
             }

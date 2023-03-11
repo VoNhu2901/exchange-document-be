@@ -4,8 +4,6 @@ import com.sgu.userservice.model.Pagination;
 import com.sgu.userservice.utils.DateUtils;
 import lombok.*;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Getter
@@ -14,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class HttpResponseObject {
+public class HttpResponseEntity {
     private int code;
     private String message;
     private List<?> data;

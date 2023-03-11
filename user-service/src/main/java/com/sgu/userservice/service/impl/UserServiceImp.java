@@ -2,11 +2,9 @@ package com.sgu.userservice.service.impl;
 
 import com.sgu.userservice.constant.Constant;
 import com.sgu.userservice.constant.Role;
-import com.sgu.userservice.dto.request.DeleteRequest;
 import com.sgu.userservice.dto.request.UserRequest;
-import com.sgu.userservice.dto.response.HttpResponseObject;
+import com.sgu.userservice.dto.response.HttpResponseEntity;
 import com.sgu.userservice.exception.BadRequestException;
-import com.sgu.userservice.exception.UserNotFoundException;
 import com.sgu.userservice.model.Account;
 import com.sgu.userservice.model.Person;
 import com.sgu.userservice.repository.AccountRepository;
@@ -19,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -27,20 +24,21 @@ public class UserServiceImp implements UserService {
     private PersonRepository personRepository;
     @Autowired
     private AccountRepository accountRepository;
-    @Override
-    public HttpResponseObject register(UserRequest userRequest) {
 
-        if(!DateUtils.isValidDate(userRequest.getBirthday())){
+    @Override
+    public HttpResponseEntity register(UserRequest userRequest) {
+
+        if (!DateUtils.isValidDate(userRequest.getBirthday())) {
             throw new BadRequestException("Birthday is invalid");
         }
 
         List<Person> personList = personRepository.findAll();
-        personList.sort((p1,p2)->{
-            if(p1.getId() == p2.getId()) return 0;
-            return p1.getId() > p2.getId() ? 1:-1;
+        personList.sort((p1, p2) -> {
+            if (p1.getId() == p2.getId()) return 0;
+            return p1.getId() > p2.getId() ? 1 : -1;
         });
 
-        Long newId = personList.get(personList.size()-1).getId() + 1;
+        Long newId = personList.get(personList.size() - 1).getId() + 1;
         String now = DateUtils.getNow();
 
         Person newPerson = Person.builder()
@@ -73,34 +71,12 @@ public class UserServiceImp implements UserService {
         Person savePerson = personRepository.save(newPerson);
         Account saveAccount = accountRepository.save(newAccount);
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.CREATED.value())
                 .message(Constant.SUCCESS)
-                .data(Arrays.asList(saveAccount,savePerson))
+                .data(Arrays.asList(saveAccount, savePerson))
                 .build();
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 
-    @Override
-    public HttpResponseObject delete(DeleteRequest deleteRequest) {
-        Long id = deleteRequest.getId();
-        Optional<Person> personOptional = personRepository.findById(id);
-        Optional<Account> accountOptional = accountRepository.findByPersonId(id);
-
-        if(personOptional.isEmpty() || accountOptional.isEmpty()){
-            throw new UserNotFoundException("Can't find account and person with id = " + id);
-        }
-
-
-        personRepository.delete(personOptional.get());
-        accountRepository.delete(accountOptional.get());
-
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
-                .code(HttpStatus.OK.value())
-                .message(Constant.SUCCESS)
-                .data(Arrays.asList(personOptional.get(),accountOptional.get()))
-                .build();
-        return httpResponseObject;
-
-    }
 }
