@@ -1,7 +1,7 @@
 package com.sgu.userservice.controller;
 
 import com.sgu.userservice.dto.request.*;
-import com.sgu.userservice.dto.response.HttpResponseObject;
+import com.sgu.userservice.dto.response.HttpResponseEntity;
 import com.sgu.userservice.model.ActiveAccountRequest;
 import com.sgu.userservice.service.AccountService;
 import jakarta.validation.Valid;
@@ -18,84 +18,84 @@ public class AccountController {
     private AccountService accountService;
 
     @GetMapping("/get-all-account")
-    public ResponseEntity<HttpResponseObject> getAllAccount(){
-        HttpResponseObject httpResponseObject = accountService.getAllAccount();
+    public ResponseEntity<HttpResponseEntity> getAllAccount(){
+        HttpResponseEntity httpResponseEntity = accountService.getAllAccount();
 
-        return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
+        return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
     }
 
     @GetMapping("/get-all-account-with-pagination")
-    public ResponseEntity<HttpResponseObject> getAllAccountWithPagination(
+    public ResponseEntity<HttpResponseEntity> getAllAccountWithPagination(
             @RequestParam(name = "page", required = true) int page,
             @RequestParam(name = "size", required = true) int size
     ){
-        HttpResponseObject httpResponseObject = accountService.getAllAccountWithPagination(page,size);
+        HttpResponseEntity httpResponseEntity = accountService.getAllAccountWithPagination(page,size);
 
-        return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
+        return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
     }
 
     @GetMapping("/get-account-by-person-id/{id}")
-    public ResponseEntity<HttpResponseObject> getAccountByPersonId(
+    public ResponseEntity<HttpResponseEntity> getAccountByPersonId(
             @PathVariable(name = "id") Long personId
     ){
-        HttpResponseObject httpResponseObject = accountService.getAccoutByPersonId(personId);
+        HttpResponseEntity httpResponseEntity = accountService.getAccoutByPersonId(personId);
 
-        return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
+        return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
     }
 
     @GetMapping("/get-account-by-username/{username}")
-    public ResponseEntity<HttpResponseObject> getAccountByUsername(
+    public ResponseEntity<HttpResponseEntity> getAccountByUsername(
             @PathVariable(name = "username") String username
     ){
-        HttpResponseObject httpResponseObject = accountService.getAccoutByUsername(username);
+        HttpResponseEntity httpResponseEntity = accountService.getAccoutByUsername(username);
 
-        return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
+        return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
     }
 
     @PostMapping("/send-otp-code")
-    public ResponseEntity<HttpResponseObject> sendOtpCode(
+    public ResponseEntity<HttpResponseEntity> sendOtpCode(
             @RequestBody @Valid SendActiveCodeRequest sendActiveCodeRequest
     ){
-        HttpResponseObject httpResponseObject = accountService.sendOtpCode(sendActiveCodeRequest);
+        HttpResponseEntity httpResponseEntity = accountService.sendOtpCode(sendActiveCodeRequest);
 
-        return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
+        return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
     }
 
     @PostMapping("/active-account")
-    public ResponseEntity<HttpResponseObject> activeAccount(
+    public ResponseEntity<HttpResponseEntity> activeAccount(
             @RequestBody @Valid ActiveAccountRequest activeAccountRequest
     ){
-        HttpResponseObject httpResponseObject = accountService.activeAccount(activeAccountRequest);
+        HttpResponseEntity httpResponseEntity = accountService.activeAccount(activeAccountRequest);
 
-        return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
+        return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
     }
 
     @PostMapping("/block-account")
-    public ResponseEntity<HttpResponseObject> blockAccount(
+    public ResponseEntity<HttpResponseEntity> blockAccount(
             @RequestBody @Valid BlockAccountRequest blockAccountRequest
     ){
-        HttpResponseObject httpResponseObject = accountService.blockAccount(blockAccountRequest);
+        HttpResponseEntity httpResponseEntity = accountService.blockAccount(blockAccountRequest);
 
-        return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
+        return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
     }
 
     @PostMapping("/unblock-account")
-    public ResponseEntity<HttpResponseObject> unBlockAccount(
+    public ResponseEntity<HttpResponseEntity> unBlockAccount(
             @RequestBody @Valid UnBlockAccountRequest unBlockAccountRequest
     ){
-        HttpResponseObject httpResponseObject = accountService.unBlockAccount(unBlockAccountRequest);
+        HttpResponseEntity httpResponseEntity = accountService.unBlockAccount(unBlockAccountRequest);
 
-        return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
+        return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
     }
 
 
     @PostMapping("/change-password")
-    public ResponseEntity<HttpResponseObject> changePassword(
+    public ResponseEntity<HttpResponseEntity> changePassword(
             @RequestBody @Valid ChangePasswordRequest changePasswordRequest
     ){
-        HttpResponseObject httpResponseObject = accountService.changePassword(changePasswordRequest);
+        HttpResponseEntity httpResponseEntity = accountService.changePassword(changePasswordRequest);
 
-        return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
+        return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
     }
 
     @PostMapping("/upload-image/{username}")
@@ -104,17 +104,17 @@ public class AccountController {
             @PathVariable(name = "username") String username
     ){
 
-        HttpResponseObject httpResponseObject = accountService.uploadImage(username, file);
-        return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
+        HttpResponseEntity httpResponseEntity = accountService.uploadImage(username, file);
+        return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
     }
 
     @PostMapping("/update-vnpay/{username}")
-    public ResponseEntity<HttpResponseObject> updateVnpay(
+    public ResponseEntity<HttpResponseEntity> updateVnpay(
             @RequestParam("file") MultipartFile file,
             @PathVariable(name = "username") String username
     ){
-        HttpResponseObject httpResponseObject = accountService.updateVnpay(username,file);
+        HttpResponseEntity httpResponseEntity = accountService.updateVnpay(username,file);
 
-        return ResponseEntity.status(HttpStatus.OK).body(httpResponseObject);
+        return ResponseEntity.status(HttpStatus.OK).body(httpResponseEntity);
     }
 }

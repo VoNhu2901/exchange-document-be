@@ -7,6 +7,8 @@ import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.google.gson.Gson;
 import com.sgu.apigateway.dto.request.HttpResponseObject;
+import com.sgu.apigateway.router.OpenRouterValidator;
+import com.sgu.apigateway.router.AdminRouterValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -32,16 +34,16 @@ public class AuthenticationFilter implements GatewayFilter {
     @Value("${security.app.jwtSecret}")
     private String secret;
     @Autowired
-    private RouterValidator routerValidator;//custom route validator
+    private OpenRouterValidator openRouterValidator;//custom route validator
 
     @Autowired
-    private RouterValidatorAdmin routerValidatorAdmin;//custom route validator
+    private AdminRouterValidator adminRouterValidator;//custom route validator
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
 
-        if (routerValidator.isSecured.test(request)) {
+        if (openRouterValidator.isSecured.test(request)) {
             if (this.isAuthMissing(request)) {
                 HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                         .code(HttpStatus.UNAUTHORIZED.value())
@@ -90,7 +92,7 @@ public class AuthenticationFilter implements GatewayFilter {
 
             //Check user call admin api
             if(role.asString().compareToIgnoreCase("USER") == 0
-            && routerValidatorAdmin.isSecured.test(request)){
+            && adminRouterValidator.isSecured.test(request)){
                 HttpResponseObject httpResponseObject = HttpResponseObject.builder()
                         .code(HttpStatus.UNAUTHORIZED.value())
                         .message(Arrays.asList("Not authorization admin"))

@@ -1,5 +1,6 @@
-package com.sgu.apigateway.filter;
+package com.sgu.apigateway.config;
 
+import com.sgu.apigateway.filter.AuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.gateway.route.RouteLocator;

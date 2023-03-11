@@ -16,7 +16,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
        HttpResponseObject httpResponse = new HttpResponseObject()
                .builder()
                .code(HttpStatus.NOT_FOUND.value())
-               .message(Arrays.asList(ex.getMessage()))
+               .message(ex.getMessage())
                .build();
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(httpResponse);
@@ -30,7 +30,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
         HttpResponseObject httpResponse = new HttpResponseObject()
                 .builder()
                 .code(HttpStatus.FORBIDDEN.value())
-                .message(Arrays.asList(ex.getMessage()))
+                .message(ex.getMessage())
                 .build();
 
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(httpResponse);
@@ -44,7 +44,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
         HttpResponseObject httpResponse = new HttpResponseObject()
                 .builder()
                 .code(HttpStatus.BAD_REQUEST.value())
-                .message(Arrays.asList(ex.getMessage()))
+                .message(ex.getMessage())
                 .build();
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(httpResponse);
@@ -59,7 +59,7 @@ public class GlobalExceptionHandle extends ResponseEntityExceptionHandler {
         HttpResponseObject httpResponse = new HttpResponseObject()
                 .builder()
                 .code(HttpStatus.UNAUTHORIZED.value())
-                .message(Arrays.asList(ex.getMessage()))
+                .message(ex.getMessage())
                 .build();
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(httpResponse);

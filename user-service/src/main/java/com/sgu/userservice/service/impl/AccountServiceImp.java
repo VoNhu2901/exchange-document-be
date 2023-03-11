@@ -2,7 +2,7 @@ package com.sgu.userservice.service.impl;
 
 import com.sgu.userservice.constant.Constant;
 import com.sgu.userservice.dto.request.*;
-import com.sgu.userservice.dto.response.HttpResponseObject;
+import com.sgu.userservice.dto.response.HttpResponseEntity;
 import com.sgu.userservice.exception.*;
 import com.sgu.userservice.model.Account;
 import com.sgu.userservice.model.ActiveAccountRequest;
@@ -36,24 +36,24 @@ public class AccountServiceImp implements AccountService {
     private CloudinaryService cloudinaryService;
 
     @Override
-    public HttpResponseObject getAllPerson() {
+    public HttpResponseEntity getAllPerson() {
 
         return null;
     }
 
     @Override
-    public HttpResponseObject getAllAccount() {
+    public HttpResponseEntity getAllAccount() {
         List<Account> accountList = accountRepository.findAll();
-        HttpResponseObject httpResponseObject = new HttpResponseObject().builder()
+        HttpResponseEntity httpResponseEntity = new HttpResponseEntity().builder()
                 .code(HttpStatus.OK.value())
                 .data(accountList)
                 .message(Constant.SUCCESS)
                 .build();
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject getAllAccountWithPagination(int page, int size) {
+    public HttpResponseEntity getAllAccountWithPagination(int page, int size) {
         Pageable pageable = PageRequest.of(page-1,size);
         Page<Account> accountPage = accountRepository.findAll(pageable);
         List<Account> accountList = accountPage.getContent();
@@ -64,18 +64,18 @@ public class AccountServiceImp implements AccountService {
                 .total_size(accountPage.getTotalElements())
                 .build();
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.OK.value())
                 .message(Constant.SUCCESS)
                 .pagination(pagination)
                 .data(accountList)
                 .build();
 
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject getAccoutByPersonId(Long personId) {
+    public HttpResponseEntity getAccoutByPersonId(Long personId) {
         Optional<Account> accountOptional = accountRepository.findByPersonId(personId);
         if(accountOptional.isEmpty()){
             throw new UserNotFoundException("Can't find account with id = " + personId);
@@ -83,16 +83,16 @@ public class AccountServiceImp implements AccountService {
 
         Account account = accountOptional.get();
         
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.OK.value())
                 .message(Constant.SUCCESS)
                 .data(Arrays.asList(account))
                 .build();
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject getAccoutByUsername(String username) {
+    public HttpResponseEntity getAccoutByUsername(String username) {
         Optional<Account> accountOptional = accountRepository.findByUsername(username);
         if(accountOptional.isEmpty()){
             throw new UserNotFoundException("Can't find account with username = " + username);
@@ -100,16 +100,16 @@ public class AccountServiceImp implements AccountService {
 
         Account account = accountOptional.get();
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.OK.value())
                 .message(Constant.SUCCESS)
                 .data(Arrays.asList(account))
                 .build();
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject sendOtpCode(SendActiveCodeRequest sendActiveCodeRequest) {
+    public HttpResponseEntity sendOtpCode(SendActiveCodeRequest sendActiveCodeRequest) {
         String username = sendActiveCodeRequest.getUsername();
         Optional<Account> accountOptional = accountRepository.findByUsername(username);
         if(accountOptional.isEmpty()){
@@ -145,16 +145,16 @@ public class AccountServiceImp implements AccountService {
         accountRepository.save(account);
 
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.OK.value())
                 .message(Constant.SUCCESS)
                 .data(Arrays.asList(emailDetails))
                 .build();
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject activeAccount(ActiveAccountRequest activeAccountRequest) {
+    public HttpResponseEntity activeAccount(ActiveAccountRequest activeAccountRequest) {
         String username = activeAccountRequest.getUsername();
         Optional<Account> accountOptional = accountRepository.findByUsername(username);
         if(accountOptional.isEmpty()){
@@ -186,15 +186,15 @@ public class AccountServiceImp implements AccountService {
         account.setIsActive(true);
         account.setUpdatedAt(DateUtils.getNow());
         accountRepository.save(account);
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.OK.value())
                 .message(Constant.SUCCESS)
                 .build();
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject blockAccount(BlockAccountRequest blockAccountRequest) {
+    public HttpResponseEntity blockAccount(BlockAccountRequest blockAccountRequest) {
         String username = blockAccountRequest.getUsername();
         Optional<Account> accountOptional = accountRepository.findByUsername(username);
         if(accountOptional.isEmpty()){
@@ -215,15 +215,15 @@ public class AccountServiceImp implements AccountService {
 
 
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.OK.value())
                 .message(Constant.SUCCESS)
                 .build();
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject unBlockAccount(UnBlockAccountRequest unBlockAccountRequest) {
+    public HttpResponseEntity unBlockAccount(UnBlockAccountRequest unBlockAccountRequest) {
         String username = unBlockAccountRequest.getUsername();
         Optional<Account> accountOptional = accountRepository.findByUsername(username);
         if(accountOptional.isEmpty()){
@@ -244,15 +244,15 @@ public class AccountServiceImp implements AccountService {
 
 
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.OK.value())
                 .message(Constant.SUCCESS)
                 .build();
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject changePassword(ChangePasswordRequest changePasswordRequest) {
+    public HttpResponseEntity changePassword(ChangePasswordRequest changePasswordRequest) {
         String username = changePasswordRequest.getUsername();
         Optional<Account> accountOptional = accountRepository.findByUsername(username);
         if(accountOptional.isEmpty()){
@@ -275,16 +275,16 @@ public class AccountServiceImp implements AccountService {
 
         accountRepository.save(account);
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.OK.value())
                 .message(Constant.SUCCESS)
                 .build();
-        return httpResponseObject;
+        return httpResponseEntity;
 
     }
 
     @Override
-    public HttpResponseObject uploadImage(String username, MultipartFile file) {
+    public HttpResponseEntity uploadImage(String username, MultipartFile file) {
         Optional<Account> accountOptional = accountRepository.findByUsername(username);
         if(accountOptional.isEmpty()){
             throw new UserNotFoundException("Can't find account with username = " + username);
@@ -318,15 +318,15 @@ public class AccountServiceImp implements AccountService {
         }
 
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.OK.value())
                 .message(Constant.SUCCESS)
                 .build();
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 
     @Override
-    public HttpResponseObject updateVnpay(String username, MultipartFile file) {
+    public HttpResponseEntity updateVnpay(String username, MultipartFile file) {
         Optional<Account> accountOptional = accountRepository.findByUsername(username);
         if(accountOptional.isEmpty()){
             throw new UserNotFoundException("Can't find account with username = " + username);
@@ -360,10 +360,10 @@ public class AccountServiceImp implements AccountService {
         }
 
 
-        HttpResponseObject httpResponseObject = HttpResponseObject.builder()
+        HttpResponseEntity httpResponseEntity = HttpResponseEntity.builder()
                 .code(HttpStatus.OK.value())
                 .message(Constant.SUCCESS)
                 .build();
-        return httpResponseObject;
+        return httpResponseEntity;
     }
 }
