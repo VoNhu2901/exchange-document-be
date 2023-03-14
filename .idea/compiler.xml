@@ -18,6 +18,7 @@
       <module name="api-gateway" target="17" />
       <module name="auth-service" target="17" />
       <module name="discovery-server" target="17" />
+      <module name="microservices-new" target="17" />
       <module name="posts-service" target="17" />
       <module name="user-service" target="17" />
     </bytecodeTargetLevel>
@@ -27,6 +28,7 @@
       <module name="api-gateway" options="-parameters" />
       <module name="auth-service" options="-parameters" />
       <module name="discovery-server" options="-parameters" />
+      <module name="microservices-new" options="-parameters" />
       <module name="posts-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>

@@ -22,7 +22,6 @@ public class OTPSmsServiceImp implements OTPSmsService {
 
             Message message = Message.creator(
                             new com.twilio.type.PhoneNumber(formatPhone),
-                            //new com.twilio.type.PhoneNumber(formatPhone),
                             "MGec6eb1c3a05ac5f6e977d0ab5c011a9a",
                             "Mã OTP website Trao đổi tài liệu SGU của bạn là : " + otpCode)
                     .create();

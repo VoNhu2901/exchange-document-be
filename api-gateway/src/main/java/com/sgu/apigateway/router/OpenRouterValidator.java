@@ -19,6 +19,7 @@ public class OpenRouterValidator {
             "/api/v1/account/active-account",
             //person
             "/api/v1/person/get-person-by-id",
+            "/api/v1/person/verify-phone",
             //category
             "/api/v1/category/get-all",
             "/api/v1/category/get-all-with-pagination",

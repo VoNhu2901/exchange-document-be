@@ -3,6 +3,8 @@ package com.sgu.userservice.controller;
 import com.sgu.userservice.dto.request.PersonRequest;
 import com.sgu.userservice.dto.response.HttpResponseEntity;
 import com.sgu.userservice.service.PersonService;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.ValidationRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
